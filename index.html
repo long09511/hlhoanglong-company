@@ -150,24 +150,52 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG</h1>
-            <p class="text-xl mb-8">Chuyên nghiệp - Chất lượng - Uy tín</p>
-            <div class="flex justify-center space-x-8 mb-8">
-    <div>
-        <div class="counter" data-target="26" style="color: black; font-weight: bold;">0</div>
-        <p>Global Clients</p>
-    </div>
-    <div>
-        <div class="counter" data-target="20000" style="color: black; font-weight: bold;">0</div>
-        <p>Printed and fabricated products</p>
-    </div>
-</div>
-            <a href="#contact" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition duration-300">Contact us now</a>
+<section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-4">CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG</h1>
+        <p class="text-xl mb-8">Chuyên nghiệp - Chất lượng - Uy tín</p>
+
+        <div class="flex justify-center space-x-8 mb-8">
+            <div>
+                <div class="counter text-3xl" data-target="26" style="color: black; font-weight: bold;">0</div>
+                <p>Global Clients</p>
+            </div>
+            <div>
+                <div class="counter text-3xl" data-target="20000" style="color: black; font-weight: bold;">0</div>
+                <p>Printed and fabricated products</p>
+            </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-gray-50"></div>
-    </section>
+
+        <a href="#contact" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition duration-300">Contact us now</a>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-gray-50"></div>
+</section>
+
+<!-- Counter Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // tốc độ tăng, số nhỏ hơn thì chạy nhanh hơn
+
+    counters.forEach(counter => {
+        const target = +counter.dataset.target;
+        let count = 0;
+
+        const updateCount = () => {
+            const increment = target / speed;
+            if (count < target) {
+                count += increment;
+                counter.textContent = Math.ceil(count).toLocaleString();
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.textContent = target.toLocaleString();
+            }
+        };
+
+        updateCount();
+    });
+});
+</script>
 
     <!-- Products Section -->
     <section id="products" class="py-20 bg-gray-50">
@@ -483,5 +511,6 @@
 body {
   overflow-x: hidden;
 }
+
 
 
