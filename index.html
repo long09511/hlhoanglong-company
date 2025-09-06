@@ -262,10 +262,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chat-messages');
     const welcomeMessage = document.getElementById('welcome-message');
 
-    // Show welcome message after a delay
+    // Show welcome message for 5 seconds
     setTimeout(() => {
         welcomeMessage.classList.add('opacity-100');
-    }, 1000);
+    }, 500); // Wait for transition
+    
+    setTimeout(() => {
+        welcomeMessage.classList.remove('opacity-100');
+        setTimeout(() => {
+            welcomeMessage.classList.add('hidden');
+        }, 500); // Wait for fade-out
+    }, 5000); // 5 seconds
 
     // Multilingual responses
     const responses = {
@@ -287,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'thời gian làm việc': 'Chúng tôi làm việc từ Thứ Hai đến Thứ Sáu, từ 8:00 đến 20:00 và Thứ Bảy, Chủ Nhật từ 9:00 đến 18:00. Luôn sẵn sàng hỗ trợ khách hàng trong và ngoài giờ hành chính.',
             'chất lượng': 'Chúng tôi cam kết chất lượng sản phẩm là ưu tiên hàng đầu. Tất cả sản phẩm đều được kiểm tra nghiêm ngặt trước khi giao đến tay khách hàng.',
             'thiệp mời': 'Chúng tôi cung cấp dịch vụ in thiệp mời với thiết kế độc đáo, trang nhã và chất lượng giấy cao cấp, phù hợp cho mọi sự kiện đặc biệt của bạn.',
-            'giá': 'Để nhận được báo giá chi tiết và cạnh tranh nhất, bạn vui lòng để lại thông tin yêu cầu cụ thể, chúng tôi sẽ sớm liên hệ lại.',
+            'giá': 'Cảm ơn bạn đã quan tâm! Để nhận báo giá chi tiết và chính xác nhất, bạn vui lòng điền thông tin vào form này: https://forms.gle/k5ieZsCFWvdnfV7w7',
             'tư vấn': 'Để được tư vấn chuyên sâu về sản phẩm và dịch vụ, bạn có thể gọi điện trực tiếp hoặc gửi email cho chúng tôi. Đội ngũ chuyên gia sẽ hỗ trợ bạn.',
             'thanh toán': 'Chúng tôi chấp nhận nhiều phương thức thanh toán linh hoạt. Vui lòng liên hệ trực tiếp để biết thêm chi tiết về phương thức thanh toán phù hợp.',
             'logo': 'Chúng tôi có thể giúp bạn thiết kế và in logo lên các sản phẩm theo yêu cầu. Logo của bạn sẽ được tái hiện một cách sắc nét và chân thực nhất.',
@@ -808,6 +815,7 @@ document.addEventListener('DOMContentLoaded', function() {
 body {
   overflow-x: hidden;
 }
+
 
 
 
