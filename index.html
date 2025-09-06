@@ -116,10 +116,39 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Scroll to top button -->
-    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Chatbot Section -->
+<div class="chatbot-container fixed bottom-20 right-5 z-50">
+    <!-- Chatbot Icon -->
+    <div id="chatbot-icon" class="w-14 h-14 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-lg hover:bg-blue-700 transition-colors duration-300">
+        <i class="fas fa-comment-dots"></i>
     </div>
+    
+    <!-- Chat Window -->
+    <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden">
+        <!-- Chat Header -->
+        <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
+            <h4 class="font-bold">HL Hoang Long Chatbot</h4>
+            <i id="close-chatbot" class="fas fa-times cursor-pointer hover:text-red-400"></i>
+        </div>
+        
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4">
+            <!-- Bot greeting message added by JavaScript -->
+        </div>
+        
+        <!-- User Input -->
+        <div class="p-4 border-t border-gray-200 flex rounded-b-lg">
+            <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
+            <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Scroll to top button -->
+<div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</div>
 
     <!-- Header -->
     <header class="bg-white shadow-sm py-4">
@@ -173,30 +202,243 @@
 
 <!-- Counter Script -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
+    // General website scripts
     const counters = document.querySelectorAll('.counter');
-    const speed = 200; // tốc độ tăng, số nhỏ hơn thì chạy nhanh hơn
+    const speed = 200;
 
     counters.forEach(counter => {
-        const target = +counter.dataset.target;
-        let count = 0;
-
+        const target = +counter.getAttribute('data-target');
         const updateCount = () => {
+            const count = +counter.innerText.replace(/,/g, '');
             const increment = target / speed;
             if (count < target) {
-                count += increment;
-                counter.textContent = Math.ceil(count).toLocaleString();
+                counter.innerText = Math.ceil(count + increment).toLocaleString();
                 requestAnimationFrame(updateCount);
             } else {
-                counter.textContent = target.toLocaleString();
+                counter.innerText = target.toLocaleString();
             }
         };
-
         updateCount();
     });
+
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    window.addEventListener('scroll', function() {
+        if(window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('active');
+        } else {
+            scrollTopBtn.classList.remove('active');
+        }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+    
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    if(isMobile()) {
+        document.getElementById('phone-link').setAttribute('href', 'https://zalo.me/84906788829');
+    }
+
+    // Chatbot scripts
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const closeBtn = document.getElementById('close-chatbot');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Multilingual responses
+    const responses = {
+        'vi': {
+            'chào': 'Chào bạn! Tôi là trợ lý ảo của HL Hoàng Long. Rất vui được hỗ trợ bạn. Bạn có câu hỏi nào về sản phẩm, dịch vụ hay công ty chúng tôi không?',
+            'xin chào': 'Chào bạn! Tôi là trợ lý ảo của HL Hoàng Long. Rất vui được hỗ trợ bạn. Bạn có câu hỏi nào về sản phẩm, dịch vụ hay công ty chúng tôi không?',
+            'sản phẩm': 'Chúng tôi chuyên in ấn và cung cấp các sản phẩm như: thiệp mời, nhãn dán, nhãn mác, tờ rơi, menu và bao bì tùy chỉnh. Bạn quan tâm đến sản phẩm nào nhất?',
+            'dịch vụ': 'Các dịch vụ chính của chúng tôi bao gồm: in ấn chất lượng cao, giải pháp quảng cáo chuyên nghiệp và dịch vụ xuất nhập khẩu đáng tin cậy. Chúng tôi cam kết mang đến sự hài lòng tối đa cho khách hàng.',
+            'liên hệ': 'Bạn có thể liên hệ với chúng tôi qua email: dangky1979@gmail.com hoặc điện thoại: +84 906 788 829. Chúng tôi sẵn sàng hỗ trợ bạn.',
+            'địa chỉ': 'Trụ sở chính của chúng tôi đặt tại TP. Hồ Chí Minh, Việt Nam. Chúng tôi có thể phục vụ khách hàng trên toàn quốc và quốc tế.',
+            'lịch sử': 'Công ty TNHH Thương Mại Dịch Vụ HL Hoàng Long được thành lập vào năm 2012. Chúng tôi tự hào có hơn một thập kỷ kinh nghiệm trong ngành in ấn và quảng cáo.',
+            'kinh nghiệm': 'Với hơn 10 năm kinh nghiệm, chúng tôi tự tin mang đến những sản phẩm và dịch vụ chuyên nghiệp, chất lượng cao, đáp ứng mọi yêu cầu khắt khe nhất của khách hàng.',
+            'đối tác': 'Chúng tôi có các đối tác toàn cầu tại Hoa Kỳ (Nevada) và Trung Quốc (Quảng Đông, Thượng Hải). Mạng lưới đối tác rộng khắp giúp chúng tôi tối ưu hóa chuỗi cung ứng.',
+            'in ấn': 'Chúng tôi cung cấp dịch vụ in ấn đa dạng, từ thiệp mời, nhãn dán cho đến tờ rơi và bao bì. Công nghệ in hiện đại đảm bảo màu sắc sắc nét và độ bền cao.',
+            'nhãn mác': 'Nhãn mác của chúng tôi được in bằng công nghệ cao, đảm bảo độ bền, chống nước và tính thẩm mỹ cho sản phẩm của bạn. Sản phẩm của bạn sẽ trở nên chuyên nghiệp hơn.',
+            'bao bì': 'Chúng tôi thiết kế và sản xuất bao bì tùy chỉnh, giúp sản phẩm của bạn nổi bật và thu hút khách hàng ngay từ cái nhìn đầu tiên. Đội ngũ thiết kế sáng tạo luôn sẵn sàng phục vụ.',
+            'tờ rơi': 'Chúng tôi thiết kế và in tờ rơi với nhiều kiểu dáng, kích thước khác nhau, giúp bạn quảng bá sản phẩm và dịch vụ một cách hiệu quả nhất.',
+            'menu': 'Menu nhà hàng và quán cà phê của chúng tôi được thiết kế phong cách và bắt mắt, giúp khách hàng có trải nghiệm tốt hơn khi lựa chọn món ăn.',
+            'thời gian làm việc': 'Chúng tôi làm việc từ Thứ Hai đến Thứ Sáu, từ 8:00 đến 20:00 và Thứ Bảy, Chủ Nhật từ 9:00 đến 18:00. Luôn sẵn sàng hỗ trợ khách hàng trong và ngoài giờ hành chính.',
+            'chất lượng': 'Chúng tôi cam kết chất lượng sản phẩm là ưu tiên hàng đầu. Tất cả sản phẩm đều được kiểm tra nghiêm ngặt trước khi giao đến tay khách hàng.',
+            'thiệp mời': 'Chúng tôi cung cấp dịch vụ in thiệp mời với thiết kế độc đáo, trang nhã và chất lượng giấy cao cấp, phù hợp cho mọi sự kiện đặc biệt của bạn.',
+            'giá': 'Để nhận được báo giá chi tiết và cạnh tranh nhất, bạn vui lòng để lại thông tin yêu cầu cụ thể, chúng tôi sẽ sớm liên hệ lại.',
+            'tư vấn': 'Để được tư vấn chuyên sâu về sản phẩm và dịch vụ, bạn có thể gọi điện trực tiếp hoặc gửi email cho chúng tôi. Đội ngũ chuyên gia sẽ hỗ trợ bạn.',
+            'thanh toán': 'Chúng tôi chấp nhận nhiều phương thức thanh toán linh hoạt. Vui lòng liên hệ trực tiếp để biết thêm chi tiết về phương thức thanh toán phù hợp.',
+            'logo': 'Chúng tôi có thể giúp bạn thiết kế và in logo lên các sản phẩm theo yêu cầu. Logo của bạn sẽ được tái hiện một cách sắc nét và chân thực nhất.',
+            'nhập khẩu': 'Chúng tôi cung cấp dịch vụ nhập khẩu và xuất khẩu chuyên nghiệp, giúp doanh nghiệp của bạn mở rộng thị trường ra quốc tế một cách dễ dàng và hiệu quả.',
+            'quảng cáo': 'Ngoài in ấn, chúng tôi còn cung cấp các giải pháp quảng cáo toàn diện để tăng cường hiệu quả truyền thông cho thương hiệu của bạn.',
+            'đơn hàng': 'Để đặt hàng, bạn vui lòng gửi yêu cầu qua email hoặc form liên hệ trên website. Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.',
+            'vận chuyển': 'Chúng tôi cung cấp dịch vụ vận chuyển nhanh chóng và an toàn. Thời gian vận chuyển sẽ tùy thuộc vào địa điểm và số lượng đơn hàng.',
+            'công ty': 'HL Hoang Long là một công ty chuyên về thương mại dịch vụ, in ấn, quảng cáo và xuất nhập khẩu.',
+            'nhân sự': 'Chúng tôi có đội ngũ nhân sự chuyên nghiệp, tận tâm và giàu kinh nghiệm, luôn sẵn sàng phục vụ khách hàng.',
+            'uy tín': 'Với nhiều năm hoạt động, chúng tôi đã xây dựng được uy tín vững chắc trên thị trường, được nhiều khách hàng tin tưởng và lựa chọn.',
+            'chương trình khuyến mãi': 'Các chương trình khuyến mãi sẽ được cập nhật thường xuyên trên website và fanpage. Bạn hãy theo dõi để không bỏ lỡ nhé.',
+            'dự án': 'Để biết thêm về các dự án chúng tôi đã thực hiện, bạn có thể xem phần "Our Story" hoặc liên hệ để được cung cấp portfolio.',
+            'website': 'Chào mừng bạn đã ghé thăm website chính thức của Công ty TNHH Thương Mại Dịch Vụ HL Hoàng Long. Hi vọng bạn sẽ tìm thấy những thông tin hữu ích.',
+            'tuyển dụng': 'Bạn có thể gửi hồ sơ ứng tuyển qua email của chúng tôi. Chúng tôi sẽ xem xét và phản hồi trong thời gian sớm nhất.'
+        },
+        'en': {
+            'hello': 'Hello! I am the HL Hoang Long virtual assistant. How can I help you today? Feel free to ask about our products, services, or anything else about our company.',
+            'hi': 'Hi there! I am the HL Hoang Long virtual assistant. How can I help you today? Feel free to ask about our products, services, or anything else about our company.',
+            'product': 'We specialize in printing and supplying products such as: invitation cards, stickers, labels, leaflets, menus, and custom packaging. Which product are you most interested in?',
+            'service': 'Our main services include: high-quality printing, professional advertising solutions, and reliable import/export services. We are committed to providing maximum customer satisfaction.',
+            'contact': 'You can reach us by email at dangky1979@gmail.com or by phone at +84 906 788 829. We are ready to assist you.',
+            'address': 'Our headquarters is located in Ho Chi Minh City, Vietnam. We serve customers nationwide and internationally.',
+            'history': 'HL Hoang Long Trading & Service Co., Ltd. was established in 2012. We are proud to have over a decade of experience in the printing and advertising industry.',
+            'experience': 'With over 10 years of experience, we are confident in providing professional, high-quality products and services that meet the most demanding requirements from our customers.',
+            'partner': 'We have global partners in the United States (Nevada) and China (Guangdong, Shanghai). Our extensive partner network helps us optimize our supply chain.',
+            'printing': 'We offer diverse printing services, from invitation cards and stickers to leaflets and packaging. Our modern printing technology ensures sharp colors and high durability.',
+            'label': 'Our labels are printed with advanced technology, ensuring durability, water resistance, and aesthetic appeal. Your product will look more professional with our labels.',
+            'packaging': 'We design and produce custom packaging that helps your products stand out and attract customers from the very first glance. Our creative design team is always ready to serve you.',
+            'leaflet': 'We design and print leaflets in various styles and sizes, helping you effectively promote your products and services.',
+            'menu': 'Our restaurant and coffee shop menus are designed to be stylish and eye-catching, providing a better customer experience when they are choosing their meal.',
+            'working hours': 'We are open from Monday to Friday, 8:00 AM to 8:00 PM, and on weekends from 9:00 AM to 6:00 PM. We are always ready to assist customers within and outside of business hours.',
+            'quality': 'We are committed to making product quality our top priority. All products are rigorously inspected before being delivered to the customer.',
+            'invitation cards': 'We provide invitation card printing services with unique, elegant designs and high-quality paper, suitable for all your special events.',
+            'price': 'To receive a detailed and competitive quote, please leave your specific request details, and we will get back to you soon.',
+            'consultation': 'For a detailed consultation about our products and services, you can call us directly or send us an email. Our team of experts will assist you.',
+            'payment': 'We accept various flexible payment methods. Please contact us directly for more details on suitable payment options.',
+            'logo': 'We can help you design and print your logo on various products upon request. Your logo will be reproduced with the highest sharpness and authenticity.',
+            'import': 'We offer professional import and export services, helping your business expand into the international market easily and effectively.',
+            'advertising': 'In addition to printing, we also provide comprehensive advertising solutions to enhance your brand’s communication effectiveness.',
+            'order': 'To place an order, please submit your request via email or the contact form on our website. We will process your order as soon as possible.',
+            'shipping': 'We provide fast and secure shipping services. The shipping time will depend on the location and order quantity.',
+            'company': 'HL Hoang Long is a service and trading company specializing in printing, advertising, and import/export.',
+            'team': 'We have a professional, dedicated, and experienced team, always ready to serve our customers.',
+            'reputation': 'With many years in operation, we have built a solid reputation in the market and are trusted by many customers.',
+            'promotion': 'Promotional programs will be regularly updated on our website and fanpage. Follow us to not miss out!',
+            'project': 'To learn more about the projects we have completed, you can check the "Our Story" section or contact us for a portfolio.',
+            'website': 'Welcome to the official website of HL Hoang Long Trading & Service Co., Ltd. We hope you find useful information here.',
+            'hiring': 'You can send your job application to our email. We will review it and respond as soon as possible.'
+        },
+        'zh': {
+            '你好': '您好！我是HL Hoàng Long的虚拟助理。今天我能为您提供什么帮助？随时可以询问我们的产品、服务或公司信息。',
+            '产品': '我们专注于印刷和供应请柬、贴纸、标签、传单、菜单和定制包装等产品。您对哪种产品最感兴趣？',
+            '服务': '我们的主要服务包括：高质量印刷、专业广告解决方案和可靠的进出口服务。我们致力于提供最大的客户满意度。',
+            '联系': '您可以通过电子邮件 dangky1979@gmail.com 或电话 +84 906 788 829 联系我们。我们的工作时间是周一至周五上午8点至晚上8点，周末上午9点至下午6点。',
+            '地址': '我们的总部位于越南胡志明市。我们为全国和国际客户提供服务。',
+            '历史': 'HL Hoang Long贸易服务有限公司成立于2012年。我们为在印刷和广告行业拥有超过十年的经验而感到自豪。',
+            '经验': '凭借超过10年的经验，我们有信心提供专业、高质量的产品和服务，满足客户最苛刻的要求。',
+            '伙伴': '我们在全球都有合作伙伴，包括美国（内华达州）和中国（广东、上海）。我们广泛的合作伙伴网络帮助我们优化供应链。',
+            '印刷': '我们提供多样的印刷服务，从请柬和贴纸到传单和包装。我们采用现代印刷技术，确保色彩鲜明、高耐用性。',
+            '标签': '我们的标签采用先进技术印刷，确保耐用、防水和美观。您的产品将因我们的标签而显得更专业。',
+            '包装': '我们设计和生产定制包装，帮助您的产品脱颖而出，从第一眼就吸引客户。我们的创意设计团队随时准备为您服务。',
+            '传单': '我们设计的传单引人注目，有效推广您的产品和服务。',
+            '菜单': '我们为餐厅和咖啡馆设计的菜单时尚且引人注目，为顾客提供更好的用餐体验。',
+            '工作时间': '我们的工作时间是周一至周五，上午8点至晚上8点，周末从上午9点至下午6点。我们随时准备在工作时间内或工作时间外协助客户。',
+            '质量': '我们承诺将产品质量作为首要任务。所有产品在交付给客户之前都经过严格检查。',
+            '请柬': '我们提供独特、优雅设计和高质量纸张的请柬印刷服务，适用于您所有的特殊活动。',
+            '价格': '要获取详细且具有竞争力的报价，请留下您的具体需求，我们会尽快与您联系。',
+            '咨询': '如需详细咨询我们的产品和服务，您可以直接致电或发送电子邮件给我们。我们的专家团队将为您提供帮助。',
+            '付款': '我们接受多种灵活的付款方式。请直接联系我们以获取有关合适付款方式的更多详情。',
+            '标志': '我们可以根据要求帮助您在各种产品上设计和印刷标志。您的标志将以最高的清晰度和真实感进行复制。',
+            '进口': '我们提供专业的进出口服务，帮助您的企业轻松有效地拓展国际市场。',
+            '广告': '除了印刷，我们还提供全面的广告解决方案，以增强您的品牌传播效果。',
+            '订单': '要下订单，请通过电子邮件或我们网站上的联系表格提交您的请求。我们将尽快处理您的订单。',
+            '运输': '我们提供快速安全的运输服务。运输时间将根据地点和订单数量而定。',
+            '公司': 'HL Hoang Long是一家专业从事贸易服务、印刷、广告和进出口的公司。',
+            '团队': '我们拥有一支专业、敬业、经验丰富的团队，随时准备为我们的客户服务。',
+            '声誉': '经过多年的运营，我们在市场上建立了坚实的声誉，并赢得了众多客户的信任。',
+            '促销': '促销活动将定期在我们的网站和主页上更新。请关注我们，以免错过！',
+            '项目': '要了解我们已完成的项目，您可以查看“我们的故事”部分或联系我们以获取作品集。',
+            '网站': '欢迎访问HL Hoang Long贸易服务有限公司的官方网站。希望您能在这里找到有用的信息。',
+            '招聘': '您可以将您的求职申请发送到我们的邮箱。我们会尽快审查并回复。'
+        }
+    };
+
+    // Helper function to create a new message bubble
+    function createMessage(message, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('flex', 'mb-4', isUser ? 'justify-end' : 'justify-start');
+        messageDiv.innerHTML = `<div class="${isUser ? 'bg-blue-500 text-white rounded-lg' : 'bg-gray-200 text-gray-800 rounded-lg'} p-3 max-w-[80%]">${message}</div>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Bot greeting on load
+    createMessage(
+        `👋 Xin chào! Tôi là chatbot của HL Hoàng Long. Tôi có thể giúp gì cho bạn hôm nay?
+        \nHello! I am the HL Hoang Long chatbot. How can I help you today?
+        \n您好！我是HL Hoang Long的聊天机器人。今天我能为您提供什么帮助？`
+    );
+
+    // Event listeners
+    chatbotIcon.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatbotWindow.classList.add('hidden');
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Function to handle the chat logic
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message === '') return;
+
+        createMessage(message, true);
+        chatInput.value = '';
+
+        setTimeout(() => {
+            const lowerCaseMessage = message.toLowerCase();
+            let botResponse = '';
+
+            // Language detection and response matching
+            let detectedLanguage = 'default';
+            if (lowerCaseMessage.match(/(xin chào|sản phẩm|công ty|địa chỉ|liên hệ|dịch vụ)/)) {
+                detectedLanguage = 'vi';
+            } else if (lowerCaseMessage.match(/(hello|hi|product|service|contact|address|company)/)) {
+                detectedLanguage = 'en';
+            } else if (lowerCaseMessage.match(/(你好|产品|服务|公司|联系|地址|历史)/)) {
+                detectedLanguage = 'zh';
+            }
+
+            // Respond based on the detected language
+            if (responses[detectedLanguage]) {
+                const langResponses = responses[detectedLanguage];
+                for (const keyword in langResponses) {
+                    if (lowerCaseMessage.includes(keyword)) {
+                        botResponse = langResponses[keyword];
+                        break;
+                    }
+                }
+            }
+
+            // Default response if no keyword is found in any language
+            if (!botResponse) {
+                botResponse = `Xin lỗi, tôi không hiểu câu hỏi của bạn. Vui lòng hỏi về sản phẩm, dịch vụ hoặc thông tin liên hệ.
+                \nI apologize, I did not understand your question. Please ask about our products, services, or contact information.
+                \n对不起，我不理解您的问题。请询问我们的产品、服务或联系方式。`;
+            }
+            createMessage(botResponse, false);
+        }, 500);
+    }
 });
 </script>
-
     <!-- Products Section -->
     <section id="products" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
@@ -511,6 +753,7 @@ document.addEventListener("DOMContentLoaded", function() {
 body {
   overflow-x: hidden;
 }
+
 
 
 
