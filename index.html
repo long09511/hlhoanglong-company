@@ -697,20 +697,32 @@
 
                     // Language detection and response matching
                     let detectedLanguage = 'default';
-                    if (lowerCaseMessage.match(/(\b(chào|xin chào|sản phẩm|dịch vụ|liên hệ|địa chỉ|lịch sử|kinh nghiệm|đối tác|in ấn|nhãn mác|bao bì|tờ rơi|menu|thời gian làm việc|chất lượng|thiệp mời|giá|tư vấn|thanh toán|logo|nhập khẩu|quảng cáo|đơn hàng|vận chuyển|công ty|nhân sự|uy tín|chương trình khuyến mãi|dự án|website|tuyển dụng|báo giá|in tem|in thiệp|in bao bì|in catalogue|in poster|thương hiệu|in tờ rơi|in ấn nhanh|gia công|xuất khẩu|nhập hàng)\b)/)) {
-                        detectedLanguage = 'vi';
-                    } else if (lowerCaseMessage.match(/(\b(hello|hi|product|service|contact|address|history|experience|partner|printing|label|packaging|leaflet|menu|working hours|quality|invitation cards|price|consultation|payment|logo|import|advertising|order|shipping|company|team|reputation|promotion|project|website|hiring|quote|sticker printing|leaflet printing|menu printing|custom packaging|offset printing|brand identity|trade shows|brochures|catalogs|fast printing|finishing|export|import)\b)/)) {
-                        detectedLanguage = 'en';
-                    } else if (lowerCaseMessage.match(/(\b(你好|产品|服务|公司|联系|地址|历史|经验|伙伴|印刷|标签|包装|传单|菜单|工作时间|质量|请柬|价格|咨询|付款|标志|进口|广告|订单|运输|团队|声誉|促销|项目|网站|招聘|报价|贴纸印刷|传单印刷|菜单印刷|定制包装|胶印|品牌形象|展会|小册子|目录|快速印刷|后期加工|出口|进口)\b)/)) {
-                        detectedLanguage = 'zh';
-                    }
-
-                    // Respond based on the detected language
-                    if (responses[detectedLanguage]) {
-                        const langResponses = responses[detectedLanguage];
-                        for (const keyword in langResponses) {
+                    // Check for Vietnamese keywords
+                    if (!botResponse) {
+                        for (const keyword in responses.vi) {
                             if (lowerCaseMessage.includes(keyword)) {
-                                botResponse = langResponses[keyword];
+                                botResponse = responses.vi[keyword];
+                                detectedLanguage = 'vi';
+                                break;
+                            }
+                        }
+                    }
+                    // If no Vietnamese keyword found, check for English
+                    if (!botResponse) {
+                        for (const keyword in responses.en) {
+                            if (lowerCaseMessage.includes(keyword)) {
+                                botResponse = responses.en[keyword];
+                                detectedLanguage = 'en';
+                                break;
+                            }
+                        }
+                    }
+                    // If no English keyword found, check for Chinese
+                    if (!botResponse) {
+                        for (const keyword in responses.zh) {
+                            if (lowerCaseMessage.includes(keyword)) {
+                                botResponse = responses.zh[keyword];
+                                detectedLanguage = 'zh';
                                 break;
                             }
                         }
@@ -730,7 +742,3 @@
 </body>
 
 </html>
-
-
-</html>
-
