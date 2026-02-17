@@ -19,6 +19,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 40%, #f1f5f9 100%);
+            color: #0f172a;
+        }
+
+        section {
+            position: relative;
         }
 
         .nav-link {
@@ -71,12 +77,58 @@
         }
 
         .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(8px);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 28px 55px rgba(30, 64, 175, 0.18);
+        }
+
+        .section-shell {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
+        }
+
+        .lux-button {
+            border-radius: 9999px;
+            box-shadow: 0 12px 28px rgba(30, 64, 175, 0.28);
+        }
+
+
+        .glass-chip {
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(255, 255, 255, 0.72);
+            padding: 0.45rem 0.95rem;
+            font-size: 0.85rem;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .info-card {
+            border-radius: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: #ffffff;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
+        }
+
+        .process-step {
+            border-radius: 1rem;
+            border: 1px solid rgba(191, 219, 254, 0.9);
+            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .faq-item {
+            border-radius: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background: #fff;
         }
 
         .counter {
@@ -121,6 +173,9 @@
 
         .testimonial-card {
             border-left: 4px solid var(--primary-dark);
+            border-radius: 1rem;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         
         .sample-question-button {
@@ -184,7 +239,7 @@
 </head>
 
 <body class="bg-gray-50">
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-white/90 backdrop-blur-md shadow-md py-4 border-b border-slate-200/70">
         <div class="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
             <div>
                 <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
@@ -199,18 +254,21 @@
         </div>
     </header>
 
-    <nav class="bg-blue-900 text-white py-3 sticky top-0 z-50 shadow-lg">
+    <nav class="bg-blue-900/90 backdrop-blur-md text-white py-3 sticky top-0 z-50 shadow-2xl border-b border-blue-700/60">
         <div class="container mx-auto px-4">
             <ul class="flex justify-center space-x-8">
                 <li><a href="#products" class="nav-link hover:text-blue-200">Product Range</a></li>
                 <li><a href="#history" class="nav-link hover:text-blue-200">Our Story</a></li>
                 <li><a href="#partners" class="nav-link hover:text-blue-200">Global Partners</a></li>
+                <li><a href="#strengths" class="nav-link hover:text-blue-200">Why Us</a></li>
+                <li><a href="#process" class="nav-link hover:text-blue-200">Process</a></li>
+                <li><a href="#faq" class="nav-link hover:text-blue-200">FAQ</a></li>
                 <li><a href="#contact" class="nav-link hover:text-blue-200">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+    <section class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white py-24">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl font-bold mb-4">CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG</h1>
             <p class="text-xl mb-8">Chuyên nghiệp - Chất lượng - Uy tín</p>
@@ -226,13 +284,14 @@
                 </div>
             </div>
 
-            <a href="#contact" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition duration-300">Contact us now</a>
+            <a href="#contact" class="lux-button inline-flex bg-white text-blue-900 px-8 py-3 font-semibold hover:bg-blue-100 transition duration-300">Contact us now</a>
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-b from-transparent to-gray-50"></div>
     </section>
 
-    <section id="products" class="py-20 bg-gray-50">
+    <section id="products" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Sản phẩm tiêu biểu</h2>
                 <h3 class="text-xl text-blue-700">Our Featured Products</h3>
@@ -240,7 +299,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -248,7 +307,7 @@
                     <p class="text-gray-600">Elegant Designs & High Quality for Special Events</p>
                 </div>
 
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-sticky-note"></i>
                     </div>
@@ -256,7 +315,7 @@
                     <p class="text-gray-600">Premium Stickers – Available in a Wide Range of Designs and Sizes</p>
                 </div>
 
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-tag"></i>
                     </div>
@@ -264,7 +323,7 @@
                     <p class="text-gray-600">Premium, Long‑Lasting Labels for Professional Product Branding</p>
                 </div>
 
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-newspaper"></i>
                     </div>
@@ -272,7 +331,7 @@
                     <p class="text-gray-600">Striking Designs for Effective Product and Service Promotion</p>
                 </div>
 
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-utensils"></i>
                     </div>
@@ -280,7 +339,7 @@
                     <p class="text-gray-600">Stylish and Eye‑Catching Menus for Restaurants and Coffee Shops</p>
                 </div>
 
-                <div class="product-card bg-white rounded-lg p-6 shadow-md overflow-hidden">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-box-open"></i>
                     </div>
@@ -288,11 +347,13 @@
                     <p class="text-gray-600">Distinctive and Attractive Packaging Designs to Enhance Customer Appeal</p>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <section id="history" class="py-20 bg-white">
+    <section id="history" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Our Story</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
@@ -309,18 +370,20 @@
                     <p class="text-gray-700">HL Hoang Long has steadily developed and broadened its market presence, operating in multiple countries worldwide and collaborating with numerous leading partners.</p>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <section id="partners" class="py-20 bg-gray-50">
+    <section id="partners" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Global Partnership</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
                         <h3 class="text-xl font-semibold">Việt Nam</h3>
@@ -328,7 +391,7 @@
                     <p class="text-gray-700">Toàn quốc</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
                         <h3 class="text-xl font-semibold">United States</h3>
@@ -336,7 +399,7 @@
                     <p class="text-gray-700">Nevada</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag">
                         <h3 class="text-xl font-semibold">China</h3>
@@ -345,11 +408,11 @@
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-md border border-slate-100">
                 <h3 class="text-2xl font-semibold text-blue-900 mb-6 text-center">What Our Clients Say</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="testimonial-card p-6 bg-gray-50 rounded-lg">
+                    <div class="testimonial-card p-6 bg-gray-50 rounded-2xl">
                         <div class="flex items-center mb-4">
                             <div>
                                 <h4 class="font-semibold">Jimmy Beans Wool</h4>
@@ -359,7 +422,7 @@
                         <p class="text-gray-700">"HL Hoang Long has provided us with high-quality label products at reasonable prices. The service is professional and punctual."</p>
                     </div>
 
-                    <div class="testimonial-card p-6 bg-gray-50 rounded-lg">
+                    <div class="testimonial-card p-6 bg-gray-50 rounded-2xl">
                         <div class="flex items-center mb-4">
                             <div>
                                 <h4 class="font-semibold">Mr.Wang Li</h4>
@@ -370,11 +433,110 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-blue-900 text-white">
+    <section id="strengths" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2">Why Choose HL Hoàng Long</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Những điểm mạnh giúp chúng tôi phù hợp với doanh nghiệp cần in ấn và quảng cáo chuyên nghiệp, ổn định và thẩm mỹ cao.</p>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-center mb-8">
+                    <span class="glass-chip">MOQ linh hoạt</span>
+                    <span class="glass-chip">In màu chuẩn</span>
+                    <span class="glass-chip">Gia công đa dạng</span>
+                    <span class="glass-chip">Giao hàng đúng hẹn</span>
+                    <span class="glass-chip">Hỗ trợ song ngữ</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="info-card p-6">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-print"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">Năng lực in ấn</h3>
+                        <p class="text-gray-600 text-sm">Đáp ứng tốt đơn hàng thường xuyên và đơn hàng theo mùa với chất lượng đồng đều.</p>
+                    </div>
+                    <div class="info-card p-6">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-palette"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">Thiết kế theo thương hiệu</h3>
+                        <p class="text-gray-600 text-sm">Tối ưu bố cục, màu sắc và vật liệu để bộ nhận diện nổi bật tại điểm bán.</p>
+                    </div>
+                    <div class="info-card p-6">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-shipping-fast"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">Tốc độ triển khai</h3>
+                        <p class="text-gray-600 text-sm">Quy trình rõ ràng giúp rút ngắn thời gian từ duyệt file đến thành phẩm.</p>
+                    </div>
+                    <div class="info-card p-6">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-handshake"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">Đối tác dài hạn</h3>
+                        <p class="text-gray-600 text-sm">Tư vấn giải pháp tối ưu chi phí và đảm bảo hiệu quả theo từng chiến dịch.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-20 bg-transparent">
+        <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2">Quy trình làm việc 4 bước</h2>
+                    <p class="text-gray-600">Minh bạch, nhanh gọn và dễ theo dõi cho mọi khách hàng doanh nghiệp.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="process-step p-5">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 01</p>
+                        <h3 class="font-semibold mb-2">Tiếp nhận yêu cầu</h3>
+                        <p class="text-sm text-gray-600">Thu thập mục tiêu, số lượng, vật liệu, tiến độ và ngân sách.</p>
+                    </div>
+                    <div class="process-step p-5">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 02</p>
+                        <h3 class="font-semibold mb-2">Tư vấn & báo giá</h3>
+                        <p class="text-sm text-gray-600">Đề xuất quy cách phù hợp, gửi báo giá rõ hạng mục và thời gian.</p>
+                    </div>
+                    <div class="process-step p-5">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 03</p>
+                        <h3 class="font-semibold mb-2">Duyệt mẫu</h3>
+                        <p class="text-sm text-gray-600">Chỉnh sửa file, cân màu và xác nhận mẫu trước khi sản xuất hàng loạt.</p>
+                    </div>
+                    <div class="process-step p-5">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 04</p>
+                        <h3 class="font-semibold mb-2">Sản xuất & bàn giao</h3>
+                        <p class="text-sm text-gray-600">Kiểm tra chất lượng, đóng gói và giao hàng theo tiến độ cam kết.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-transparent">
+        <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2">Câu hỏi thường gặp</h2>
+                </div>
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <div class="faq-item p-5">
+                        <h3 class="font-semibold mb-2">Thời gian hoàn thành đơn hàng là bao lâu?</h3>
+                        <p class="text-gray-600 text-sm">Tùy theo sản phẩm và số lượng, thông thường từ 3–10 ngày làm việc sau khi duyệt mẫu.</p>
+                    </div>
+                    <div class="faq-item p-5">
+                        <h3 class="font-semibold mb-2">Công ty có hỗ trợ thiết kế file in không?</h3>
+                        <p class="text-gray-600 text-sm">Có. Đội ngũ của chúng tôi hỗ trợ tối ưu file, kiểm tra lỗi kỹ thuật và tư vấn định hướng hình ảnh thương hiệu.</p>
+                    </div>
+                    <div class="faq-item p-5">
+                        <h3 class="font-semibold mb-2">Có nhận đơn hàng xuất khẩu không?</h3>
+                        <p class="text-gray-600 text-sm">Có. Chúng tôi đã hợp tác đối tác tại Việt Nam, Mỹ và Trung Quốc, hỗ trợ chứng từ theo yêu cầu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-transparent text-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-[2rem] p-8 md:p-12 shadow-2xl border border-blue-700/70">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-2">Contact Us</h2>
                 <div class="w-20 h-1 bg-white mx-auto mt-4"></div>
@@ -412,15 +574,16 @@
                     <p class="mb-6">Kindly leave your contact details so we can assist you in the best possible way</p>
 
                     <div class="w-full max-w-screen-md mx-auto px-4">
-                        <iframe src="https://forms.gle/k5ieZsCFWvdnfV7w7" class="w-full" height="800" style="border: none;" loading="lazy" allowfullscreen>
+                        <iframe src="https://forms.gle/k5ieZsCFWvdnfV7w7" class="w-full rounded-2xl bg-white" height="800" style="border: none;" loading="lazy" allowfullscreen>
                         </iframe>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-300 py-12">
+    <footer class="bg-gray-950 text-gray-300 py-12 mt-10 rounded-t-[2rem]">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
@@ -448,12 +611,12 @@
             Hello! I'm here to help—please use me to learn more about our company and services.
         </div>
         <!-- Chatbot Icon -->
-        <div id="chatbot-icon" class="w-14 h-14 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-lg hover:bg-blue-700 transition-colors duration-300">
+        <div id="chatbot-icon" class="w-14 h-14 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-2xl hover:bg-blue-700 transition-colors duration-300 ring-4 ring-blue-100/70">
             <i class="fas fa-comment-dots"></i>
         </div>
 
         <!-- Chat Window -->
-        <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden">
+        <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
             <!-- Chat Header -->
             <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
                 <h4 class="font-bold">HL Hoang Long Chatbot</h4>
