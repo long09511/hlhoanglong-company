@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" id="site-root">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HL Hoang Long Service Trading Company Limited</title>
+    <title><span id="txt-company-en-name">HL Hoang Long Service Trading Company Limited</span></title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/3sX8L5D/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -207,6 +207,49 @@
             background-color: #4a80b0;
         }
 
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(4px);
+            opacity: 0.35;
+            pointer-events: none;
+            animation: floatOrb 9s ease-in-out infinite;
+        }
+
+        .hero-orb--one {
+            width: 220px;
+            height: 220px;
+            top: 20%;
+            left: 8%;
+            background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+        }
+
+        .hero-orb--two {
+            width: 280px;
+            height: 280px;
+            right: 8%;
+            bottom: 12%;
+            background: radial-gradient(circle, #bfdbfe 0%, transparent 72%);
+            animation-delay: 1.4s;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px) scale(0.98);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-16px) translateX(8px); }
+        }
+
         /* Wave animation for typing indicator */
         .wave-container span {
             animation-name: wave;
@@ -246,6 +289,7 @@
                 <p class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
                 <div class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import & Export</div>
             </div>
+            <div class="flex items-center gap-3">
             <div class="flex items-center">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
@@ -268,6 +312,12 @@
         </div>
     </nav>
 
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white py-24">
+        <div class="hero-orb hero-orb--one"></div>
+        <div class="hero-orb hero-orb--two"></div>
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4"><span id="hero-title">CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG</span></h1>
+            <p class="text-xl mb-8"><span id="hero-subtitle">Chuyên nghiệp - Chất lượng - Uy tín</span></p>
     <section class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white py-24">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl font-bold mb-4">CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG</h1>
@@ -276,6 +326,15 @@
             <div class="flex justify-center space-x-8 mb-8">
                 <div>
                     <div class="counter text-3xl" data-target="26" style="color: black; font-weight: bold;">0</div>
+                    <p><span id="stat-global-clients">Global Clients</span></p>
+                </div>
+                <div>
+                    <div class="counter text-3xl" data-target="20000" style="color: black; font-weight: bold;">0</div>
+                    <p><span id="stat-printed-products">Printed and fabricated products</span></p>
+                </div>
+            </div>
+
+            <a href="#contact" class="lux-button inline-flex bg-white text-blue-900 px-8 py-3 font-semibold hover:bg-blue-100 transition duration-300"><span id="hero-cta">Contact us now</span></a>
                     <p>Global Clients</p>
                 </div>
                 <div>
@@ -291,6 +350,10 @@
 
     <section id="products" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="products-title-vi">Sản phẩm tiêu biểu</span></h2>
+                <h3 class="text-xl text-blue-700"><span id="products-title-en">Our Featured Products</span></h3>
             <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Sản phẩm tiêu biểu</h2>
@@ -299,6 +362,52 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd1-title">Invitation Cards</span></h3>
+                    <p class="text-gray-600"><span id="prd1-desc">Elegant Designs & High Quality for Special Events</span></p>
+                </div>
+
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd2-title">Sticker</span></h3>
+                    <p class="text-gray-600"><span id="prd2-desc">Premium Stickers – Available in a Wide Range of Designs and Sizes</span></p>
+                </div>
+
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd3-title">Label</span></h3>
+                    <p class="text-gray-600"><span id="prd3-desc">Premium, Long‑Lasting Labels for Professional Product Branding</span></p>
+                </div>
+
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd4-title">Leaflet</span></h3>
+                    <p class="text-gray-600"><span id="prd4-desc">Striking Designs for Effective Product and Service Promotion</span></p>
+                </div>
+
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd5-title">Menu</span></h3>
+                    <p class="text-gray-600"><span id="prd5-desc">Stylish and Eye‑Catching Menus for Restaurants and Coffee Shops</span></p>
+                </div>
+
+                <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden animate-on-scroll">
+                    <div class="text-blue-900 text-2xl mb-2">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2"><span id="prd6-title">Custom Packaging</span></h3>
+                    <p class="text-gray-600"><span id="prd6-desc">Distinctive and Attractive Packaging Designs to Enhance Customer Appeal</span></p>
                 <div class="product-card bg-white/95 rounded-2xl p-6 shadow-md overflow-hidden">
                     <div class="text-blue-900 text-2xl mb-2">
                         <i class="fas fa-envelope"></i>
@@ -353,6 +462,9 @@
 
     <section id="history" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="history-title">Our Story</span></h2>
             <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Our Story</h2>
@@ -364,6 +476,10 @@
                     <img src="https://i.postimg.cc/7ZN3YW66/Logo-HL-Ho-ng-Long.png" alt="HL Hoang Long Head Office – Ho Chi Minh City" class="rounded-lg shadow-lg">
                 </div>
                 <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-blue-900 mb-4"><span id="history-growth-title">Our Growth Story</span></h3>
+                    <p class="text-gray-700 mb-4"><span id="history-p1">Established in 2012, HL Hoang Long Trading & Service Co., Ltd. originated from its predecessor, HL Hoang Long Co., Ltd.</span></p>
+                    <p class="text-gray-700 mb-4"><span id="history-p2">With more than a decade of expertise in printing, advertising, and import–export, we are proud to provide our clients with premium‑quality products and exceptional professional services.</span></p>
+                    <p class="text-gray-700"><span id="history-p3">HL Hoang Long has steadily developed and broadened its market presence, operating in multiple countries worldwide and collaborating with numerous leading partners.</span></p>
                     <h3 class="text-2xl font-semibold text-blue-900 mb-4">Our Growth Story</h3>
                     <p class="text-gray-700 mb-4">Established in 2012, HL Hoang Long Trading & Service Co., Ltd. originated from its predecessor, HL Hoang Long Co., Ltd.</p>
                     <p class="text-gray-700 mb-4">With more than a decade of expertise in printing, advertising, and import–export, we are proud to provide our clients with premium‑quality products and exceptional professional services.</p>
@@ -376,6 +492,9 @@
 
     <section id="partners" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="partners-title">Global Partnership</span></h2>
             <div class="section-shell p-8 md:p-12">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-blue-900 mb-2">Global Partnership</h2>
@@ -409,6 +528,7 @@
             </div>
 
             <div class="bg-white/95 p-8 rounded-2xl shadow-md border border-slate-100">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-6 text-center"><span id="testimonials-title">What Our Clients Say</span></h3>
                 <h3 class="text-2xl font-semibold text-blue-900 mb-6 text-center">What Our Clients Say</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -439,6 +559,38 @@
 
     <section id="strengths" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="strengths-title">Why Choose HL Hoàng Long</span></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto"><span id="strengths-subtitle">Những điểm mạnh giúp chúng tôi phù hợp với doanh nghiệp cần in ấn và quảng cáo chuyên nghiệp, ổn định và thẩm mỹ cao.</span></p>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-center mb-8">
+                    <span class="glass-chip"><span id="chip-1">MOQ linh hoạt</span></span>
+                    <span class="glass-chip"><span id="chip-2">In màu chuẩn</span></span>
+                    <span class="glass-chip"><span id="chip-3">Gia công đa dạng</span></span>
+                    <span class="glass-chip"><span id="chip-4">Giao hàng đúng hẹn</span></span>
+                    <span class="glass-chip"><span id="chip-5">Hỗ trợ song ngữ</span></span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="info-card p-6 animate-on-scroll">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-print"></i></div>
+                        <h3 class="font-semibold text-lg mb-2"><span id="strength-card1-title">Năng lực in ấn</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="strength-card1-desc">Đáp ứng tốt đơn hàng thường xuyên và đơn hàng theo mùa với chất lượng đồng đều.</span></p>
+                    </div>
+                    <div class="info-card p-6 animate-on-scroll">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-palette"></i></div>
+                        <h3 class="font-semibold text-lg mb-2"><span id="strength-card2-title">Thiết kế theo thương hiệu</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="strength-card2-desc">Tối ưu bố cục, màu sắc và vật liệu để bộ nhận diện nổi bật tại điểm bán.</span></p>
+                    </div>
+                    <div class="info-card p-6 animate-on-scroll">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-shipping-fast"></i></div>
+                        <h3 class="font-semibold text-lg mb-2"><span id="strength-card3-title">Tốc độ triển khai</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="strength-card3-desc">Quy trình rõ ràng giúp rút ngắn thời gian từ duyệt file đến thành phẩm.</span></p>
+                    </div>
+                    <div class="info-card p-6 animate-on-scroll">
+                        <div class="text-blue-900 text-2xl mb-3"><i class="fas fa-handshake"></i></div>
+                        <h3 class="font-semibold text-lg mb-2"><span id="strength-card4-title">Đối tác dài hạn</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="strength-card4-desc">Tư vấn giải pháp tối ưu chi phí và đảm bảo hiệu quả theo từng chiến dịch.</span></p>
             <div class="section-shell p-8 md:p-12">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-blue-900 mb-2">Why Choose HL Hoàng Long</h2>
@@ -479,6 +631,31 @@
 
     <section id="process" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="process-title">Quy trình làm việc 4 bước</span></h2>
+                    <p class="text-gray-600"><span id="process-subtitle">Minh bạch, nhanh gọn và dễ theo dõi cho mọi khách hàng doanh nghiệp.</span></p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="process-step p-5 animate-on-scroll">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 01</p>
+                        <h3 class="font-semibold mb-2"><span id="process-step1-title">Tiếp nhận yêu cầu</span></h3>
+                        <p class="text-sm text-gray-600"><span id="process-step1-desc">Thu thập mục tiêu, số lượng, vật liệu, tiến độ và ngân sách.</span></p>
+                    </div>
+                    <div class="process-step p-5 animate-on-scroll">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 02</p>
+                        <h3 class="font-semibold mb-2"><span id="process-step2-title">Tư vấn & báo giá</span></h3>
+                        <p class="text-sm text-gray-600"><span id="process-step2-desc">Đề xuất quy cách phù hợp, gửi báo giá rõ hạng mục và thời gian.</span></p>
+                    </div>
+                    <div class="process-step p-5 animate-on-scroll">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 03</p>
+                        <h3 class="font-semibold mb-2"><span id="process-step3-title">Duyệt mẫu</span></h3>
+                        <p class="text-sm text-gray-600"><span id="process-step3-desc">Chỉnh sửa file, cân màu và xác nhận mẫu trước khi sản xuất hàng loạt.</span></p>
+                    </div>
+                    <div class="process-step p-5 animate-on-scroll">
+                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 04</p>
+                        <h3 class="font-semibold mb-2"><span id="process-step4-title">Sản xuất & bàn giao</span></h3>
+                        <p class="text-sm text-gray-600"><span id="process-step4-desc">Kiểm tra chất lượng, đóng gói và giao hàng theo tiến độ cam kết.</span></p>
             <div class="section-shell p-8 md:p-12">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-blue-900 mb-2">Quy trình làm việc 4 bước</h2>
@@ -512,6 +689,22 @@
 
     <section id="faq" class="py-20 bg-transparent">
         <div class="container mx-auto px-4">
+            <div class="section-shell p-8 md:p-12 animate-on-scroll">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="faq-title">Câu hỏi thường gặp</span></h2>
+                </div>
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <div class="faq-item p-5 animate-on-scroll">
+                        <h3 class="font-semibold mb-2"><span id="faq-q1">Thời gian hoàn thành đơn hàng là bao lâu?</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="faq-a1">Tùy theo sản phẩm và số lượng, thông thường từ 3–10 ngày làm việc sau khi duyệt mẫu.</span></p>
+                    </div>
+                    <div class="faq-item p-5 animate-on-scroll">
+                        <h3 class="font-semibold mb-2"><span id="faq-q2">Công ty có hỗ trợ thiết kế file in không?</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="faq-a2">Có. Đội ngũ của chúng tôi hỗ trợ tối ưu file, kiểm tra lỗi kỹ thuật và tư vấn định hướng hình ảnh thương hiệu.</span></p>
+                    </div>
+                    <div class="faq-item p-5 animate-on-scroll">
+                        <h3 class="font-semibold mb-2"><span id="faq-q3">Có nhận đơn hàng xuất khẩu không?</span></h3>
+                        <p class="text-gray-600 text-sm"><span id="faq-a3">Có. Chúng tôi đã hợp tác đối tác tại Việt Nam, Mỹ và Trung Quốc, hỗ trợ chứng từ theo yêu cầu.</span></p>
             <div class="section-shell p-8 md:p-12">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl font-bold text-blue-900 mb-2">Câu hỏi thường gặp</h2>
@@ -538,12 +731,18 @@
         <div class="container mx-auto px-4">
             <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-[2rem] p-8 md:p-12 shadow-2xl border border-blue-700/70">
             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-2"><span id="contact-title">Contact Us</span></h2>
                 <h2 class="text-3xl font-bold mb-2">Contact Us</h2>
                 <div class="w-20 h-1 bg-white mx-auto mt-4"></div>
             </div>
 
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4"><span id="contact-get-in-touch">Get in Touch</span></h3>
+
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-xl mb-2">HL Hoang Long Trading & Service Co., Ltd</h4>
+                        <p><span id="contact-headquarters">Headquarters: Ho Chi Minh City, Vietnam</span></p>
                     <h3 class="text-2xl font-semibold mb-4">Get in Touch</h3>
 
                     <div class="mb-6">
@@ -564,12 +763,15 @@
 
                         <div class="flex items-center">
                             <i class="fas fa-clock mr-3"></i>
+                            <p><span id="contact-hours">Mon – Fri: 8:00 AM – 8:00 PM | Weekend: 9:00 AM – 6:00 PM</span></p>
                             <p>Mon – Fri: 8:00 AM – 8:00 PM | Weekend: 9:00 AM – 6:00 PM</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4"><span id="contact-send-request">Gửi yêu cầu</span></h3>
+                    <p class="mb-6"><span id="contact-form-desc">Kindly leave your contact details so we can assist you in the best possible way</span></p>
                     <h3 class="text-2xl font-semibold mb-4">Gửi yêu cầu</h3>
                     <p class="mb-6">Kindly leave your contact details so we can assist you in the best possible way</p>
 
@@ -593,6 +795,8 @@
                 </div>
 
                 <div class="text-center md:text-right">
+                    <p class="mb-2"><span id="footer-slogan-1">Professionalism – Quality – Reliability</span></p>
+                    <p><span id="footer-slogan-2">Global Partnerships for Excellence in Products</span></p>
                     <p class="mb-2">Professionalism – Quality – Reliability</p>
                     <p>Global Partnerships for Excellence in Products</p>
                 </div>
@@ -608,6 +812,7 @@
     <div class="chatbot-container fixed bottom-20 right-5 z-50">
         <!-- Welcome message -->
         <div id="welcome-message" class="absolute right-16 bottom-1/2 -translate-y-1/2 bg-gray-800 text-white text-sm px-4 py-2 rounded-lg shadow-xl whitespace-nowrap opacity-0 transition-opacity duration-300">
+            <span id="chatbot-welcome">Hello! I am here to help—please use me to learn more about our company and services.</span>
             Hello! I'm here to help—please use me to learn more about our company and services.
         </div>
         <!-- Chatbot Icon -->
@@ -725,6 +930,26 @@
             const langSelector = document.getElementById('language-selector');
             const langButtons = document.querySelectorAll('.lang-button');
             let currentLanguage = '';
+
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+                animatedElements.forEach((el, index) => {
+                    el.style.transitionDelay = `${Math.min(index * 45, 360)}ms`;
+                    observer.observe(el);
+                });
+            } else {
+                animatedElements.forEach(el => el.classList.add('is-visible'));
+            }
 
             // Stop typewriter cursor animation after typing is done
             typewriterElement.addEventListener('animationend', (event) => {
