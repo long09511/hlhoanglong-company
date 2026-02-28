@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>HL Hoang Long Service Trading Company Limited</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo_công_ty.png">
 
@@ -14,298 +13,296 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    :root {
-        --primary-light: #7db7e1;
-        --primary-dark: #2a5a8a;
-        --secondary: #f8f9fa;
-    }
-
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        scroll-behavior: smooth;
-        overflow-x: hidden; /* Ngừng cuộn ngang */
-        background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 40%, #f1f5f9 100%);
-        color: #0f172a;
-    }
-
-    section {
-        position: relative;
-    }
-
-    .nav-link {
-        position: relative;
-        padding-bottom: 5px;
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: var(--primary-dark);
-        transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-        width: 100%;
-    }
-
-    .typewriter {
-        overflow: hidden;
-        border-right: 2px solid var(--primary-dark);
-        white-space: nowrap;
-        margin: 0 auto;
-        animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
-    }
-
-    @keyframes typing {
-        from {
-            width: 0
-        }
-        to {
-            width: 100%
-        }
-    }
-
-    @keyframes blink-caret {
-        from,
-        to {
-            border-color: transparent
+        :root {
+            --primary-light: #7db7e1;
+            --primary-dark: #2a5a8a;
+            --secondary: #f8f9fa;
         }
 
-        50% {
-            border-color: var(--primary-dark)
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Ngừng cuộn ngang */
+            background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 40%, #f1f5f9 100%);
+            color: #0f172a;
         }
-    }
 
-    .product-card {
-        transition: transform 0.35s ease, box-shadow 0.35s ease;
-        border-radius: 1.25rem;
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
-        backdrop-filter: blur(8px);
-    }
-
-    .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 28px 55px rgba(30, 64, 175, 0.18);
-    }
-
-    .section-shell {
-        background: rgba(255, 255, 255, 0.86);
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        border-radius: 2rem;
-        box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
-    }
-
-    .lux-button {
-        border-radius: 9999px;
-        box-shadow: 0 12px 28px rgba(30, 64, 175, 0.28);
-    }
-
-    .glass-chip {
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        background: rgba(255, 255, 255, 0.72);
-        padding: 0.45rem 0.95rem;
-        font-size: 0.85rem;
-        color: #1e3a8a;
-        font-weight: 600;
-    }
-
-    .info-card {
-        border-radius: 1.25rem;
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        background: #ffffff;
-        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
-    }
-
-    .process-step {
-        border-radius: 1rem;
-        border: 1px solid rgba(191, 219, 254, 0.9);
-        background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
-    }
-
-    .faq-item {
-        border-radius: 1rem;
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        background: #fff;
-    }
-
-    .counter {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: var(--primary-dark);
-    }
-
-    .small-flag {
-        width: 30px;
-        height: 18px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-right: 5px;
-    }
-
-    .scroll-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: var(--primary-dark);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: 1000;
-    }
-
-    .scroll-top.active {
-        opacity: 1;
-    }
-
-    .scroll-top:hover {
-        background-color: var(--primary-light);
-    }
-
-    .testimonial-card {
-        border-left: 4px solid var(--primary-dark);
-        border-radius: 1rem;
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    }
-
-    .sample-question-button {
-        background-color: #2a5a8a;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 9999px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-align: center;
-    }
-
-    .sample-question-button:hover {
-        background-color: #4a80b0;
-    }
-
-    .lang-button {
-        background-color: #2a5a8a;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 9999px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 80%;
-        text-align: center;
-    }
-
-    .lang-button:hover {
-        background-color: #4a80b0;
-    }
-
-    .hero-orb {
-        position: absolute;
-        border-radius: 9999px;
-        filter: blur(4px);
-        opacity: 0.35;
-        pointer-events: none;
-        animation: floatOrb 9s ease-in-out infinite;
-    }
-
-    .hero-orb--one {
-        width: 220px;
-        height: 220px;
-        top: 20%;
-        left: 8%;
-        background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
-    }
-
-    .hero-orb--two {
-        width: 280px;
-        height: 280px;
-        right: 8%;
-        bottom: 12%;
-        background: radial-gradient(circle, #bfdbfe 0%, transparent 72%);
-        animation-delay: 1.4s;
-    }
-
-    .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(24px) scale(0.98);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .animate-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    @keyframes floatOrb {
-        0%, 100% { transform: translateY(0px) translateX(0px); }
-        50% { transform: translateY(-16px) translateX(8px); }
-    }
-
-    /* Wave animation for typing indicator */
-    .wave-container span {
-        animation-name: wave;
-        animation-duration: 1.2s;
-        animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out;
-        font-size: 20px;
-        display: inline-block;
-    }
-    .wave-container span:nth-child(1) {
-        animation-delay: 0s;
-    }
-    .wave-container span:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-    .wave-container span:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-    @keyframes wave {
-        0%, 100% {
-            transform: translateY(0);
-            opacity: 0.5;
+        section {
+            position: relative;
         }
-        50% {
-            transform: translateY(-5px);
+
+        /* Điều chỉnh lời chào chatbot */
+        #welcome-message {
+            white-space: normal; /* Cho phép văn bản xuống dòng */
+            word-wrap: break-word; /* Ngắt từ khi quá dài */
+            font-size: 14px;
+            padding: 10px 15px;
+            max-width: 80%;
+        }
+
+        @media screen and (max-width: 768px) {
+            #welcome-message {
+                font-size: 12px; /* Điều chỉnh cỡ chữ trên thiết bị di động */
+                max-width: 90%; /* Tăng chiều rộng trên di động */
+                padding: 8px 12px; /* Giảm padding trên di động */
+            }
+
+            .chatbot-container {
+                right: 15px;
+                bottom: 15px; /* Điều chỉnh vị trí chatbot trên thiết bị di động */
+            }
+        }
+
+        /* Cấu hình lại các phần còn lại */
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--primary-dark);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--primary-dark)
+            }
+        }
+
+        .product-card {
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 55px rgba(30, 64, 175, 0.18);
+        }
+
+        .section-shell {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
+        }
+
+        .lux-button {
+            border-radius: 9999px;
+            box-shadow: 0 12px 28px rgba(30, 64, 175, 0.28);
+        }
+
+        .glass-chip {
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(255, 255, 255, 0.72);
+            padding: 0.45rem 0.95rem;
+            font-size: 0.85rem;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .info-card {
+            border-radius: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: #ffffff;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
+        }
+
+        .process-step {
+            border-radius: 1rem;
+            border: 1px solid rgba(191, 219, 254, 0.9);
+            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .faq-item {
+            border-radius: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background: #fff;
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        .small-flag {
+            width: 30px;
+            height: 18px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-right: 5px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-dark);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.active {
             opacity: 1;
         }
-    }
 
-    /* Điều chỉnh lời chào chatbot */
-    #welcome-message {
-        white-space: normal; /* Cho phép văn bản xuống dòng */
-        word-wrap: break-word; /* Ngắt từ khi quá dài */
-        font-size: 14px;
-        padding: 10px 15px;
-        max-width: 80%;
-    }
-
-    @media screen and (max-width: 768px) {
-        #welcome-message {
-            font-size: 12px; /* Điều chỉnh cỡ chữ trên thiết bị di động */
-            max-width: 90%; /* Tăng chiều rộng trên di động */
-            padding: 8px 12px; /* Giảm padding trên di động */
+        .scroll-top:hover {
+            background-color: var(--primary-light);
         }
-    }
 
-    /* Điều chỉnh vị trí chatbot trên thiết bị di động */
-    @media screen and (max-width: 768px) {
-        .chatbot-container {
-            right: 15px;
-            bottom: 15px;
+        .testimonial-card {
+            border-left: 4px solid var(--primary-dark);
+            border-radius: 1rem;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
-    }
-</style>
+
+        .sample-question-button {
+            background-color: #2a5a8a;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .sample-question-button:hover {
+            background-color: #4a80b0;
+        }
+
+        .lang-button {
+            background-color: #2a5a8a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 80%;
+            text-align: center;
+        }
+
+        .lang-button:hover {
+            background-color: #4a80b0;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(4px);
+            opacity: 0.35;
+            pointer-events: none;
+            animation: floatOrb 9s ease-in-out infinite;
+        }
+
+        .hero-orb--one {
+            width: 220px;
+            height: 220px;
+            top: 20%;
+            left: 8%;
+            background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+        }
+
+        .hero-orb--two {
+            width: 280px;
+            height: 280px;
+            right: 8%;
+            bottom: 12%;
+            background: radial-gradient(circle, #bfdbfe 0%, transparent 72%);
+            animation-delay: 1.4s;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px) scale(0.98);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-16px) translateX(8px); }
+        }
+
+        /* Wave animation for typing indicator */
+        .wave-container span {
+            animation-name: wave;
+            animation-duration: 1.2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            font-size: 20px;
+            display: inline-block;
+        }
+        .wave-container span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .wave-container span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .wave-container span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
