@@ -10,6 +10,10 @@
     <link rel="icon" type="image/png" href="logo_công_ty.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -17,6 +21,13 @@
             --primary-light: #7db7e1;
             --primary-dark: #2a5a8a;
             --secondary: #f8f9fa;
+            --font-sans: 'Noto Sans', 'Noto Sans SC', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: clip;
         }
 
         html,
@@ -26,7 +37,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             scroll-behavior: smooth;
             overflow-x: hidden; /* Ngừng cuộn ngang */
             background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 40%, #f1f5f9 100%);
@@ -35,6 +46,12 @@
 
         section {
             position: relative;
+        }
+
+        input,
+        textarea,
+        button {
+            font-family: inherit;
         }
 
 
@@ -94,9 +111,31 @@
         }
 
         /* Cấu hình lại các phần còn lại */
+        .header-info-cluster {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 0.8rem;
+            background: linear-gradient(145deg, rgba(219, 234, 254, 0.72), rgba(239, 246, 255, 0.9));
+            border: 1px solid rgba(148, 163, 184, 0.32);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .flag-cluster {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.8rem;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        }
+
         .nav-link {
             position: relative;
-            padding-bottom: 5px;
+            padding-bottom: 2px;
         }
 
         .nav-link::after {
@@ -355,6 +394,14 @@
                 gap: 0.75rem;
             }
 
+            .header-info-cluster {
+                width: 100%;
+            }
+
+            .flag-cluster {
+                align-self: flex-start;
+            }
+
             .typewriter {
                 white-space: normal;
                 border-right: 0;
@@ -429,12 +476,12 @@
 <body class="bg-gray-50">
     <header class="bg-white/90 backdrop-blur-md shadow-md py-4 border-b border-slate-200/70">
         <div class="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
-            <div>
+            <div class="header-info-cluster">
                 <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
                 <p class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
                 <div class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import & Export</div>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flag-cluster">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag">
