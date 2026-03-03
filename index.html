@@ -33,23 +33,44 @@
 
         /* Điều chỉnh lời chào chatbot */
         #welcome-message {
-            white-space: normal; /* Cho phép văn bản xuống dòng */
-            word-wrap: break-word; /* Ngắt từ khi quá dài */
-            font-size: 14px;
-            padding: 10px 15px;
-            max-width: 80%;
+            position: absolute;
+            right: calc(100% + 12px);
+            bottom: 50%;
+            transform: translateY(50%);
+            width: max-content;
+            max-width: min(320px, calc(100vw - 110px));
+            white-space: normal;
+            overflow-wrap: anywhere;
+            font-size: clamp(0.75rem, 1.9vw, 0.9rem);
+            line-height: 1.45;
+            padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.7rem, 2vw, 1rem);
+            border-radius: 0.75rem;
+        }
+
+        #chatbot-window {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 12px);
+            width: min(20rem, calc(100vw - 2rem));
+            max-height: min(32rem, calc(100vh - 5.5rem));
         }
 
         @media screen and (max-width: 768px) {
-            #welcome-message {
-                font-size: 12px; /* Điều chỉnh cỡ chữ trên thiết bị di động */
-                max-width: 90%; /* Tăng chiều rộng trên di động */
-                padding: 8px 12px; /* Giảm padding trên di động */
+            .chatbot-container {
+                right: 12px;
+                bottom: 12px;
             }
 
-            .chatbot-container {
-                right: 15px;
-                bottom: 15px; /* Điều chỉnh vị trí chatbot trên thiết bị di động */
+            #welcome-message {
+                right: calc(100% + 10px);
+                max-width: min(250px, calc(100vw - 95px));
+            }
+
+            #chatbot-window {
+                right: 0;
+                bottom: calc(100% + 10px);
+                width: min(20rem, calc(100vw - 1.5rem));
+                max-height: min(31rem, calc(100vh - 5rem));
             }
         }
 
@@ -675,50 +696,49 @@
 <!-- Chatbot Section -->
 <div class="chatbot-container fixed bottom-20 right-5 z-50">
     <!-- Welcome message -->
-    <div id="welcome-message" class="absolute right-16 bottom-1/2 -translate-y-1/2 bg-gray-800 text-white text-sm px-4 py-2 rounded-lg shadow-xl whitespace-nowrap opacity-0 transition-opacity duration-300">
+    <div id="welcome-message" class="bg-gray-800 text-white shadow-xl opacity-0 transition-opacity duration-300">
         <span id="chatbot-welcome">Hi, how can I assist you?</span>
     </div>
     <!-- Chatbot Icon -->
     <div id="chatbot-icon" class="w-14 h-14 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-2xl hover:bg-blue-700 transition-colors duration-300 ring-4 ring-blue-100/70">
         <i class="fas fa-comment-dots"></i>
     </div>
-</div>
 
-        <!-- Chat Window -->
-        <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
-            <!-- Chat Header -->
-            <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
-                <h4 class="font-bold">HL Hoang Long Chatbot</h4>
-                <i id="close-chatbot" class="fas fa-times cursor-pointer hover:text-red-400"></i>
-            </div>
-            
-            <!-- Language Selection Screen -->
-            <div id="language-selector" class="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
-                <h4 class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
-                <button class="lang-button" data-lang="vi">Tiếng Việt</button>
-                <button class="lang-button" data-lang="en">English</button>
-                <button class="lang-button" data-lang="zh">中文</button>
-            </div>
+    <!-- Chat Window -->
+    <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+        <!-- Chat Header -->
+        <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
+            <h4 class="font-bold">HL Hoang Long Chatbot</h4>
+            <i id="close-chatbot" class="fas fa-times cursor-pointer hover:text-red-400"></i>
+        </div>
 
-            <!-- Chat Messages Container -->
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 hidden">
-                <!-- Bot greeting message added by JavaScript -->
-            </div>
-            
-            <!-- Sample questions container -->
-            <div id="sample-questions" class="p-4 border-t border-gray-200 hidden flex flex-col space-y-2">
-                <!-- Sample questions added by JavaScript -->
-            </div>
+        <!-- Language Selection Screen -->
+        <div id="language-selector" class="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
+            <h4 class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
+            <button class="lang-button" data-lang="vi">Tiếng Việt</button>
+            <button class="lang-button" data-lang="en">English</button>
+            <button class="lang-button" data-lang="zh">中文</button>
+        </div>
 
-            <!-- User Input -->
-            <div id="chat-input-container" class="p-4 border-t border-gray-200 hidden flex rounded-b-lg">
-                <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
-                <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 hidden">
+            <!-- Bot greeting message added by JavaScript -->
+        </div>
+
+        <!-- Sample questions container -->
+        <div id="sample-questions" class="p-4 border-t border-gray-200 hidden flex flex-col space-y-2">
+            <!-- Sample questions added by JavaScript -->
+        </div>
+
+        <!-- User Input -->
+        <div id="chat-input-container" class="p-4 border-t border-gray-200 hidden flex rounded-b-lg">
+            <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
+            <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
+</div>
     <!-- Scroll to top button -->
     <div class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
         <i class="fas fa-arrow-up"></i>
