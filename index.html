@@ -33,23 +33,29 @@
 
         /* Điều chỉnh lời chào chatbot */
         #welcome-message {
-            white-space: normal; /* Cho phép văn bản xuống dòng */
-            word-wrap: break-word; /* Ngắt từ khi quá dài */
-            font-size: 14px;
-            padding: 10px 15px;
-            max-width: 80%;
+            position: absolute;
+            right: calc(100% + 12px);
+            bottom: 50%;
+            transform: translateY(50%);
+            width: max-content;
+            max-width: min(320px, calc(100vw - 110px));
+            white-space: normal;
+            overflow-wrap: anywhere;
+            font-size: clamp(0.75rem, 1.9vw, 0.9rem);
+            line-height: 1.45;
+            padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.7rem, 2vw, 1rem);
+            border-radius: 0.75rem;
         }
 
         @media screen and (max-width: 768px) {
-            #welcome-message {
-                font-size: 12px; /* Điều chỉnh cỡ chữ trên thiết bị di động */
-                max-width: 90%; /* Tăng chiều rộng trên di động */
-                padding: 8px 12px; /* Giảm padding trên di động */
+            .chatbot-container {
+                right: 12px;
+                bottom: 12px;
             }
 
-            .chatbot-container {
-                right: 15px;
-                bottom: 15px; /* Điều chỉnh vị trí chatbot trên thiết bị di động */
+            #welcome-message {
+                right: calc(100% + 10px);
+                max-width: min(250px, calc(100vw - 95px));
             }
         }
 
@@ -675,7 +681,7 @@
 <!-- Chatbot Section -->
 <div class="chatbot-container fixed bottom-20 right-5 z-50">
     <!-- Welcome message -->
-    <div id="welcome-message" class="absolute right-16 bottom-1/2 -translate-y-1/2 bg-gray-800 text-white text-sm px-4 py-2 rounded-lg shadow-xl whitespace-nowrap opacity-0 transition-opacity duration-300">
+    <div id="welcome-message" class="bg-gray-800 text-white shadow-xl opacity-0 transition-opacity duration-300">
         <span id="chatbot-welcome">Hi, how can I assist you?</span>
     </div>
     <!-- Chatbot Icon -->
