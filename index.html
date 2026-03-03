@@ -19,6 +19,12 @@
             --secondary: #f8f9fa;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: clip;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
@@ -294,18 +300,80 @@
 
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(24px) scale(0.98);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translate3d(0, 24px, 0) scale(0.98);
+            transition: opacity 0.65s ease-out, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
         }
 
         .animate-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
         }
 
         @keyframes floatOrb {
             0%, 100% { transform: translateY(0px) translateX(0px); }
             50% { transform: translateY(-16px) translateX(8px); }
+        }
+
+        .product-card,
+        .info-card,
+        .process-step,
+        .faq-item,
+        .lux-button,
+        #chatbot-icon,
+        #chatbot-window {
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        @media screen and (max-width: 1024px) {
+            header > div,
+            nav .container {
+                max-width: 100%;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 1.25rem;
+                justify-content: flex-start;
+                padding-bottom: 0.2rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            nav ul::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            header .max-w-screen-xl {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .typewriter {
+                white-space: normal;
+                border-right: 0;
+                animation: none;
+            }
+
+            .hero-orb--one,
+            .hero-orb--two {
+                filter: blur(2px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         /* Wave animation for typing indicator */
