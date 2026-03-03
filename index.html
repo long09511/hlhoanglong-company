@@ -19,6 +19,12 @@
             --secondary: #f8f9fa;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: clip;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
@@ -31,25 +37,59 @@
             position: relative;
         }
 
+
+        /* Fallback layout nếu Tailwind CDN tải chậm */
+        .hidden {
+            display: none !important;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1100;
+        }
         /* Điều chỉnh lời chào chatbot */
         #welcome-message {
-            white-space: normal; /* Cho phép văn bản xuống dòng */
-            word-wrap: break-word; /* Ngắt từ khi quá dài */
-            font-size: 14px;
-            padding: 10px 15px;
-            max-width: 80%;
+            position: absolute;
+            right: calc(100% + 12px);
+            bottom: 50%;
+            transform: translateY(50%);
+            width: max-content;
+            max-width: min(320px, calc(100vw - 110px));
+            white-space: normal;
+            overflow-wrap: anywhere;
+            font-size: clamp(0.75rem, 1.9vw, 0.9rem);
+            line-height: 1.45;
+            padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.7rem, 2vw, 1rem);
+            border-radius: 0.75rem;
+        }
+
+        #chatbot-window {
+            position: absolute;
+            right: 0;
+            bottom: calc(100% + 12px);
+            width: min(20rem, calc(100vw - 2rem));
+            max-height: min(32rem, calc(100vh - 5.5rem));
+            z-index: 1101;
         }
 
         @media screen and (max-width: 768px) {
-            #welcome-message {
-                font-size: 12px; /* Điều chỉnh cỡ chữ trên thiết bị di động */
-                max-width: 90%; /* Tăng chiều rộng trên di động */
-                padding: 8px 12px; /* Giảm padding trên di động */
+            .chatbot-container {
+                right: 12px;
+                bottom: 12px;
             }
 
-            .chatbot-container {
-                right: 15px;
-                bottom: 15px; /* Điều chỉnh vị trí chatbot trên thiết bị di động */
+            #welcome-message {
+                right: calc(100% + 10px);
+                max-width: min(250px, calc(100vw - 95px));
+            }
+
+            #chatbot-window {
+                right: 0;
+                bottom: calc(100% + 10px);
+                width: min(20rem, calc(100vw - 1.5rem));
+                max-height: min(31rem, calc(100vh - 5rem));
             }
         }
 
@@ -260,13 +300,14 @@
 
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(24px) scale(0.98);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translate3d(0, 24px, 0) scale(0.98);
+            transition: opacity 0.65s ease-out, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
         }
 
         .animate-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
         }
 
         @keyframes floatOrb {
@@ -274,7 +315,87 @@
             50% { transform: translateY(-16px) translateX(8px); }
         }
 
+        .product-card,
+        .info-card,
+        .process-step,
+        .faq-item,
+        .lux-button,
+        #chatbot-icon,
+        #chatbot-window {
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        @media screen and (max-width: 1024px) {
+            header > div,
+            nav .container {
+                max-width: 100%;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 1.25rem;
+                justify-content: flex-start;
+                padding-bottom: 0.2rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            nav ul::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            header .max-w-screen-xl {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .typewriter {
+                white-space: normal;
+                border-right: 0;
+                animation: none;
+            }
+
+            .hero-orb--one,
+            .hero-orb--two {
+                filter: blur(2px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         /* Wave animation for typing indicator */
+
+        .contact-mascot-shell {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-mascot {
+            width: min(270px, 75vw);
+            filter: drop-shadow(0 16px 28px rgba(15, 23, 42, 0.28));
+            animation: mascotFloat 3.8s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        @keyframes mascotFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
         .wave-container span {
             animation-name: wave;
             animation-duration: 1.2s;
@@ -636,6 +757,33 @@
                             <p><span id="contact-hours">Mon – Fri: 8:00 AM – 8:00 PM | Weekend: 9:00 AM – 6:00 PM</span></p>
                         </div>
                     </div>
+
+                    <div class="contact-mascot-shell animate-on-scroll" aria-hidden="true">
+                        <svg class="contact-mascot" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" role="img">
+                            <ellipse cx="160" cy="250" rx="95" ry="16" fill="rgba(15,23,42,0.25)"/>
+                            <path d="M132 62h56l18 40H114z" fill="#f3c24f"/>
+                            <path d="M160 22l74 43H86z" fill="#d9a33a" stroke="#9a6a18" stroke-width="3"/>
+                            <circle cx="160" cy="122" r="52" fill="#ef4444" stroke="#9f1239" stroke-width="4"/>
+                            <circle cx="142" cy="114" r="9" fill="#fff"/>
+                            <circle cx="178" cy="114" r="9" fill="#fff"/>
+                            <circle cx="142" cy="114" r="4" fill="#111827"/>
+                            <circle cx="178" cy="114" r="4" fill="#111827"/>
+                            <path d="M142 140c12 10 24 10 36 0" stroke="#7f1d1d" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <path d="M128 146h64v62h-64z" rx="16" fill="#dc2626" stroke="#991b1b" stroke-width="4"/>
+                            <rect x="106" y="152" width="20" height="52" rx="9" fill="#dc2626" stroke="#991b1b" stroke-width="4"/>
+                            <rect x="194" y="152" width="20" height="52" rx="9" fill="#dc2626" stroke="#991b1b" stroke-width="4"/>
+                            <path d="M140 208h24v28h-24z" fill="#f59e0b"/>
+                            <path d="M168 208h24v28h-24z" fill="#f59e0b"/>
+                            <path d="M102 170l-26 10 4 18 32-8z" fill="#fff"/>
+                            <path d="M98 175l-16 6M100 182l-18 7M102 189l-19 8" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="206" y="170" width="56" height="20" rx="8" fill="#2563eb"/>
+                            <rect x="252" y="174" width="34" height="12" rx="6" fill="#0f172a"/>
+                            <path d="M196 206c44 0 76 13 96 40-48 4-81-7-106-28" fill="#f59e0b"/>
+                            <path d="M196 206c38 6 62 21 78 43" stroke="#f43f5e" stroke-width="8" fill="none"/>
+                            <path d="M196 206c30 9 48 22 60 40" stroke="#22d3ee" stroke-width="8" fill="none"/>
+                        </svg>
+                    </div>
+
                 </div>
 
                 <div class="md:w-1/2">
@@ -675,50 +823,49 @@
 <!-- Chatbot Section -->
 <div class="chatbot-container fixed bottom-20 right-5 z-50">
     <!-- Welcome message -->
-    <div id="welcome-message" class="absolute right-16 bottom-1/2 -translate-y-1/2 bg-gray-800 text-white text-sm px-4 py-2 rounded-lg shadow-xl whitespace-nowrap opacity-0 transition-opacity duration-300">
+    <div id="welcome-message" class="bg-gray-800 text-white shadow-xl opacity-0 transition-opacity duration-300">
         <span id="chatbot-welcome">Hi, how can I assist you?</span>
     </div>
     <!-- Chatbot Icon -->
     <div id="chatbot-icon" class="w-14 h-14 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-2xl hover:bg-blue-700 transition-colors duration-300 ring-4 ring-blue-100/70">
         <i class="fas fa-comment-dots"></i>
     </div>
-</div>
 
-        <!-- Chat Window -->
-        <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
-            <!-- Chat Header -->
-            <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
-                <h4 class="font-bold">HL Hoang Long Chatbot</h4>
-                <i id="close-chatbot" class="fas fa-times cursor-pointer hover:text-red-400"></i>
-            </div>
-            
-            <!-- Language Selection Screen -->
-            <div id="language-selector" class="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
-                <h4 class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
-                <button class="lang-button" data-lang="vi">Tiếng Việt</button>
-                <button class="lang-button" data-lang="en">English</button>
-                <button class="lang-button" data-lang="zh">中文</button>
-            </div>
+    <!-- Chat Window -->
+    <div id="chatbot-window" class="hidden w-80 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+        <!-- Chat Header -->
+        <div class="bg-blue-900 text-white p-4 flex justify-between items-center rounded-t-lg">
+            <h4 class="font-bold">HL Hoang Long Chatbot</h4>
+            <i id="close-chatbot" class="fas fa-times cursor-pointer hover:text-red-400"></i>
+        </div>
 
-            <!-- Chat Messages Container -->
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 hidden">
-                <!-- Bot greeting message added by JavaScript -->
-            </div>
-            
-            <!-- Sample questions container -->
-            <div id="sample-questions" class="p-4 border-t border-gray-200 hidden flex flex-col space-y-2">
-                <!-- Sample questions added by JavaScript -->
-            </div>
+        <!-- Language Selection Screen -->
+        <div id="language-selector" class="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
+            <h4 class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
+            <button class="lang-button" data-lang="vi">Tiếng Việt</button>
+            <button class="lang-button" data-lang="en">English</button>
+            <button class="lang-button" data-lang="zh">中文</button>
+        </div>
 
-            <!-- User Input -->
-            <div id="chat-input-container" class="p-4 border-t border-gray-200 hidden flex rounded-b-lg">
-                <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
-                <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 hidden">
+            <!-- Bot greeting message added by JavaScript -->
+        </div>
+
+        <!-- Sample questions container -->
+        <div id="sample-questions" class="p-4 border-t border-gray-200 hidden flex flex-col space-y-2">
+            <!-- Sample questions added by JavaScript -->
+        </div>
+
+        <!-- User Input -->
+        <div id="chat-input-container" class="p-4 border-t border-gray-200 hidden flex rounded-b-lg">
+            <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
+            <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
+</div>
     <!-- Scroll to top button -->
     <div class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
         <i class="fas fa-arrow-up"></i>
@@ -1231,6 +1378,13 @@
                 'zh': ['你们有哪些产品？', '介绍一下你们的服务', '如何联系公司？', '你们有国际合作伙伴吗？']
             };
 
+
+            const smartFallbackResponses = {
+                vi: 'Mình có thể hỗ trợ rất nhiều chủ đề: sản phẩm in ấn, báo giá, thời gian sản xuất, số lượng tối thiểu, thiết kế file, giao hàng, thanh toán, hợp tác quốc tế và thông tin liên hệ. Bạn có thể hỏi theo dạng: “Báo giá in tem nhãn số lượng 5.000 cái”, “Thời gian làm menu bao lâu?”, hoặc “Yêu cầu file thiết kế gồm gì?”. Nếu cần báo giá nhanh, vui lòng để lại số điện thoại/email để đội ngũ HL Hoàng Long hỗ trợ ngay.',
+                en: 'I can help with many topics: printing products, quotation, production lead time, minimum order quantity, design files, delivery, payment, international cooperation, and contact info. You can ask like: “Quote for 5,000 labels”, “How long does menu printing take?”, or “What file format do you need?”. For fast quotation, please leave your phone/email and the HL Hoang Long team will support you promptly.',
+                zh: '我可以支持很多主题：印刷产品、报价、生产周期、起订量、设计文件要求、配送、付款、国际合作和联系方式。您可以这样提问：“5000张标签报价多少？”，“菜单印刷需要多久？”，“设计文件需要什么格式？”。如需快速报价，请留下电话/邮箱，我们团队会尽快联系您。'
+            };
+
             function createMessage(message, isUser) {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('flex', 'mb-4', isUser ? 'justify-end' : 'justify-start');
@@ -1272,10 +1426,60 @@
                 sampleQuestionsContainer.classList.remove('hidden');
                 chatInputContainer.classList.add('hidden');
             }
-            
+
             function hideSampleQuestions() {
                 sampleQuestionsContainer.classList.add('hidden');
                 chatInputContainer.classList.remove('hidden');
+            }
+
+            function normalizeText(input) {
+                return input
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[̀-ͯ]/g, '')
+                    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+
+            function getBestKeywordResponse(message, language) {
+                const langResponses = responses[language] || {};
+                const normalizedMessage = normalizeText(message);
+                const lowerMessage = message.toLowerCase();
+                let bestScore = 0;
+                let bestResponse = '';
+
+                for (const key in langResponses) {
+                    const keywordArray = langResponses[key].keywords || [];
+                    let intentScore = 0;
+
+                    keywordArray.forEach((keyword) => {
+                        const keywordNorm = normalizeText(keyword);
+                        const keywordRaw = keyword.toLowerCase();
+
+                        if (!keywordNorm && !keywordRaw) return;
+
+                        if (keywordNorm && normalizedMessage.includes(keywordNorm)) {
+                            intentScore += keywordNorm.includes(' ') ? 5 : 2;
+                        }
+
+                        if (keywordRaw && lowerMessage.includes(keywordRaw)) {
+                            intentScore += keywordRaw.includes(' ') ? 3 : 1;
+                        }
+
+                        if (keywordNorm) {
+                            const tokenHits = keywordNorm.split(' ').filter(Boolean).filter(token => normalizedMessage.includes(token)).length;
+                            intentScore += Math.min(tokenHits, 2);
+                        }
+                    });
+
+                    if (intentScore > bestScore) {
+                        bestScore = intentScore;
+                        bestResponse = langResponses[key].response;
+                    }
+                }
+
+                return { bestScore, bestResponse };
             }
 
             // Event listeners
@@ -1309,6 +1513,11 @@
 
             closeBtn.addEventListener('click', () => {
                 chatbotWindow.classList.add('hidden');
+                langSelector.classList.remove('hidden');
+                chatMessages.classList.add('hidden');
+                chatInputContainer.classList.add('hidden');
+                sampleQuestionsContainer.classList.add('hidden');
+                chatMessages.innerHTML = '';
                 if (welcomeMessage) welcomeMessage.classList.add('opacity-100');
             });
 
@@ -1347,30 +1556,18 @@
 
                 setTimeout(() => {
                     removeTypingIndicator(typingIndicator);
-                    const lowerCaseMessage = message.toLowerCase();
-                    let botResponse = '';
-                    
-                    const langResponses = responses[currentLanguage];
-                    let foundResponse = false;
-                    for (const key in langResponses) {
-                        const keywordArray = langResponses[key].keywords;
-                        if (keywordArray.some(keyword => lowerCaseMessage.includes(keyword))) {
-                            botResponse = langResponses[key].response;
-                            foundResponse = true;
-                            break;
-                        }
+
+                    const { bestScore, bestResponse } = getBestKeywordResponse(message, currentLanguage);
+                    const isConfidentMatch = bestScore >= 3;
+
+                    if (isConfidentMatch && bestResponse) {
+                        createMessage(bestResponse, false);
+                        return;
                     }
 
-                    if (foundResponse) {
-                        createMessage(botResponse, false);
-                    } else {
-                        const defaultMessage = (currentLanguage === 'vi') ? `Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể chọn một trong các câu hỏi dưới đây hoặc thử hỏi lại.` :
-                                             (currentLanguage === 'en') ? `I apologize, I did not understand your question. You can choose one of the questions below or try asking again.` :
-                                             `对不起，我不理解您的问题。您可以选择下面的一个问题或再试着问一下。`;
-                        createMessage(defaultMessage, false);
-                        showSampleQuestions(currentLanguage);
-                    }
-                }, 2000); // 2 seconds typing animation
+                    createMessage(smartFallbackResponses[currentLanguage] || smartFallbackResponses.vi, false);
+                    showSampleQuestions(currentLanguage);
+                }, 1200);
             }
         });
     </script>
