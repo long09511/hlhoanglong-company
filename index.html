@@ -63,7 +63,7 @@
         .chatbot-container {
             position: fixed;
             right: 20px;
-            bottom: 20px;
+            bottom: 84px;
             z-index: 1100;
         }
         /* Điều chỉnh lời chào chatbot */
@@ -94,7 +94,7 @@
         @media screen and (max-width: 768px) {
             .chatbot-container {
                 right: 12px;
-                bottom: 12px;
+                bottom: 72px;
             }
 
             #welcome-message {
@@ -864,11 +864,16 @@
 
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
                 <p>© 2012 - <span id="current-year"></span> HL HOÀNG LONG. All rights reserved.</p>
+                <div class="mx-auto mt-2 max-w-4xl space-y-1 leading-relaxed px-2">
+                    <p><strong>Tiếng Việt:</strong> Mọi hành vi gian lận làm ảnh hưởng đến công ty đều được xử lý bởi Pháp Luật Việt Nam.</p>
+                    <p><strong>English:</strong> Any fraudulent acts affecting the company will be handled under Vietnamese law.</p>
+                    <p><strong>中文：</strong>任何影响公司的欺诈行为都将依据越南法律处理。</p>
+                </div>
             </div>
         </div>
     </footer>
 <!-- Chatbot Section -->
-<div class="chatbot-container fixed bottom-20 right-5 z-50">
+<div class="chatbot-container fixed z-50">
     <!-- Welcome message -->
     <div id="welcome-message" class="bg-gray-800 text-white shadow-xl opacity-0 transition-opacity duration-300">
         <span id="chatbot-welcome">Hi, how can I assist you?</span>
