@@ -311,6 +311,112 @@
             background-color: #4a80b0;
         }
 
+        .theme-toggle-button {
+            background-color: #0f172a;
+            color: white;
+            border-radius: 9999px;
+            padding: 0.65rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .theme-toggle-button:hover {
+            background-color: #1e293b;
+            transform: translateY(-1px);
+        }
+
+        body.light-mode {
+            background: radial-gradient(circle at top, #eff6ff 0%, #f8fafc 40%, #f1f5f9 100%) !important;
+            color: #0f172a;
+        }
+
+        body.dark-mode {
+            background: radial-gradient(circle at top, #020821 0%, #06153f 35%, #081a4d 100%) !important;
+            color: #e7f1ff;
+        }
+
+        body.dark-mode header {
+            background-color: rgba(4, 16, 42, 0.96) !important;
+            border-color: rgba(58, 93, 151, 0.65) !important;
+        }
+
+        body.dark-mode nav {
+            background-color: rgba(4, 16, 42, 0.98) !important;
+            border-color: rgba(70, 112, 181, 0.52) !important;
+        }
+
+        body.dark-mode .lang-switcher-button,
+        body.dark-mode .sample-question-button,
+        body.dark-mode .theme-toggle-button {
+            background-color: #061a47 !important;
+            color: #e8f5ff !important;
+            border-color: #1c3f75 !important;
+        }
+
+        body.dark-mode .lang-switcher-button:hover,
+        body.dark-mode .sample-question-button:hover,
+        body.dark-mode .theme-toggle-button:hover {
+            background-color: #0d2b6a !important;
+        }
+
+        body.dark-mode .text-blue-700,
+        body.dark-mode .text-blue-900,
+        body.dark-mode .text-sky-600 {
+            color: #8cc4ff !important;
+        }
+
+        body.dark-mode .text-gray-600,
+        body.dark-mode .text-gray-700,
+        body.dark-mode .text-gray-800,
+        body.dark-mode .text-slate-500,
+        body.dark-mode .text-slate-600,
+        body.dark-mode .text-slate-700,
+        body.dark-mode .text-gray-500 {
+            color: #dbe9ff !important;
+        }
+
+        body.dark-mode .text-white {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .bg-white,
+        body.dark-mode .bg-white/95,
+        body.dark-mode .bg-white/80,
+        body.dark-mode .bg-white/70,
+        body.dark-mode .bg-white/50,
+        body.dark-mode .bg-gray-50,
+        body.dark-mode .bg-blue-900\/90,
+        body.dark-mode .bg-blue-900,
+        body.dark-mode .bg-blue-800,
+        body.dark-mode .bg-blue-700 {
+            background-color: rgba(4, 12, 34, 0.94) !important;
+        }
+
+        body.dark-mode .border-slate-100,
+        body.dark-mode .border-slate-200\/70,
+        body.dark-mode .border-white\/30,
+        body.dark-mode .border-white,
+        body.dark-mode .border-blue-700\/60,
+        body.dark-mode .border-blue-900 {
+            border-color: rgba(103, 143, 213, 0.45) !important;
+        }
+
+        body.dark-mode .border-slate-100,
+        body.dark-mode .border-slate-200\/70,
+        body.dark-mode .border-white\/30,
+        body.dark-mode .border-white {
+            border-color: rgba(148, 163, 184, 0.35) !important;
+        }
+
+        body.dark-mode .bg-gray-50 {
+            background-color: #020617 !important;
+        }
+
+        body.dark-mode .border-blue-700\/60 {
+            border-color: rgba(56, 189, 248, 0.45) !important;
+        }
+
         .hero-orb {
             position: absolute;
             border-radius: 9999px;
@@ -478,13 +584,21 @@
         <div class="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
             <div class="header-info-cluster">
                 <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
-                <p class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
-                <div class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import & Export</div>
+                <p id="header-tagline" class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
+                <div id="typewriter-text" class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import & Export</div>
             </div>
             <div class="flag-cluster">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag">
+            </div>
+            <div class="lang-switcher flex items-center gap-3">
+                <button class="lang-switcher-button lang-button" data-lang="vi" style="width:auto; padding:0.55rem 0.95rem;">Tiếng Việt</button>
+                <button class="lang-switcher-button lang-button" data-lang="en" style="width:auto; padding:0.55rem 0.95rem;">English</button>
+                <button class="lang-switcher-button lang-button" data-lang="zh" style="width:auto; padding:0.55rem 0.95rem;">中文</button>
+                <button id="theme-mode-toggle" class="theme-toggle-button" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -492,13 +606,13 @@
     <nav class="bg-blue-900/90 backdrop-blur-md text-white py-3 sticky top-0 z-50 shadow-2xl border-b border-blue-700/60">
         <div class="container mx-auto px-4">
             <ul class="flex justify-center space-x-8">
-                <li><a href="#products" class="nav-link hover:text-blue-200">Product Range</a></li>
-                <li><a href="#history" class="nav-link hover:text-blue-200">Our Story</a></li>
-                <li><a href="#partners" class="nav-link hover:text-blue-200">Global Partners</a></li>
-                <li><a href="#strengths" class="nav-link hover:text-blue-200">Why Us</a></li>
-                <li><a href="#process" class="nav-link hover:text-blue-200">Process</a></li>
-                <li><a href="#faq" class="nav-link hover:text-blue-200">FAQ</a></li>
-                <li><a href="#contact" class="nav-link hover:text-blue-200">Contact</a></li>
+                <li><a id="nav-products" href="#products" class="nav-link hover:text-blue-200">Product Range</a></li>
+                <li><a id="nav-history" href="#history" class="nav-link hover:text-blue-200">Our Story</a></li>
+                <li><a id="nav-partners" href="#partners" class="nav-link hover:text-blue-200">Global Partners</a></li>
+                <li><a id="nav-strengths" href="#strengths" class="nav-link hover:text-blue-200">Why Us</a></li>
+                <li><a id="nav-process" href="#process" class="nav-link hover:text-blue-200">Process</a></li>
+                <li><a id="nav-faq" href="#faq" class="nav-link hover:text-blue-200">FAQ</a></li>
+                <li><a id="nav-contact" href="#contact" class="nav-link hover:text-blue-200">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -530,8 +644,8 @@
         <div class="container mx-auto px-4">
             <div class="section-shell p-8 md:p-12 animate-on-scroll">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="products-title-vi">Sản phẩm tiêu biểu</span></h2>
-                <h3 class="text-xl text-blue-700"><span id="products-title-en">Our Featured Products</span></h3>
+                <h2 class="text-3xl font-bold text-blue-900 mb-2"><span id="products-title">Sản phẩm tiêu biểu</span></h2>
+                <h3 class="text-xl text-blue-700"><span id="products-subtitle">Các sản phẩm tiêu biểu của chúng tôi</span></h3>
                 <div class="w-20 h-1 bg-blue-500 mx-auto mt-4"></div>
             </div>
 
@@ -623,25 +737,25 @@
                 <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
-                        <h3 class="text-xl font-semibold">Việt Nam</h3>
+                        <h3 id="partner-country-vn" class="text-xl font-semibold">Việt Nam</h3>
                     </div>
-                    <p class="text-gray-700">Toàn quốc</p>
+                    <p id="partner-location-vn" class="text-gray-700">Toàn quốc</p>
                 </div>
                 
                 <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
-                        <h3 class="text-xl font-semibold">United States</h3>
+                        <h3 id="partner-country-us" class="text-xl font-semibold">United States</h3>
                     </div>
-                    <p class="text-gray-700">Nevada</p>
+                    <p id="partner-location-us" class="text-gray-700">Nevada</p>
                 </div>
 
                 <div class="bg-white/95 p-6 rounded-2xl shadow-md text-center border border-slate-100 text-center">
                     <div class="flex justify-center items-center mb-4">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag">
-                        <h3 class="text-xl font-semibold">China</h3>
+                        <h3 id="partner-country-cn" class="text-xl font-semibold">China</h3>
                     </div>
-                    <p class="text-gray-700">Guangdong, Shanghai</p>
+                    <p id="partner-location-cn" class="text-gray-700">Guangdong, Shanghai</p>
                 </div>
             </div>
 
@@ -652,21 +766,21 @@
                     <div class="testimonial-card p-6 bg-gray-50 rounded-2xl">
                         <div class="flex items-center mb-4">
                             <div>
-                                <h4 class="font-semibold">Jimmy Beans Wool</h4>
-                                <p class="text-sm text-gray-600">Nevada, USA</p>
+                                <h4 id="testimonial1-name" class="font-semibold">Jimmy Beans Wool</h4>
+                                <p id="testimonial1-location" class="text-sm text-gray-600">Nevada, USA</p>
                             </div>
                         </div>
-                        <p class="text-gray-700">"HL Hoang Long has provided us with high-quality label products at reasonable prices. The service is professional and punctual."</p>
+                        <p id="testimonial1-text" class="text-gray-700">"HL Hoang Long has provided us with high-quality label products at reasonable prices. The service is professional and punctual."</p>
                     </div>
 
                     <div class="testimonial-card p-6 bg-gray-50 rounded-2xl">
                         <div class="flex items-center mb-4">
                             <div>
-                                <h4 class="font-semibold">Mr.Wang Li</h4>
-                                <p class="text-sm text-gray-600">Shanghai, China</p>
+                                <h4 id="testimonial2-name" class="font-semibold">Mr.Wang Li</h4>
+                                <p id="testimonial2-location" class="text-sm text-gray-600">Shanghai, China</p>
                             </div>
                         </div>
-                        <p class="text-gray-700">"Working with HL Hoang Long was a great experience. They always met all our requirements with great precision."</p>
+                        <p id="testimonial2-text" class="text-gray-700">"Working with HL Hoang Long was a great experience. They always met all our requirements with great precision."</p>
                     </div>
                 </div>
             </div>
@@ -723,22 +837,22 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                     <div class="process-step p-5 animate-on-scroll">
-                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 01</p>
+                        <p id="process-step1-label" class="text-xs font-bold text-blue-700 mb-2">BƯỚC 01</p>
                         <h3 class="font-semibold mb-2"><span id="process-step1-title">Tiếp nhận yêu cầu</span></h3>
                         <p class="text-sm text-gray-600"><span id="process-step1-desc">Thu thập mục tiêu, số lượng, vật liệu, tiến độ và ngân sách.</span></p>
                     </div>
                     <div class="process-step p-5 animate-on-scroll">
-                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 02</p>
+                        <p id="process-step2-label" class="text-xs font-bold text-blue-700 mb-2">BƯỚC 02</p>
                         <h3 class="font-semibold mb-2"><span id="process-step2-title">Tư vấn & báo giá</span></h3>
                         <p class="text-sm text-gray-600"><span id="process-step2-desc">Đề xuất quy cách phù hợp, gửi báo giá rõ hạng mục và thời gian.</span></p>
                     </div>
                     <div class="process-step p-5 animate-on-scroll">
-                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 03</p>
+                        <p id="process-step3-label" class="text-xs font-bold text-blue-700 mb-2">BƯỚC 03</p>
                         <h3 class="font-semibold mb-2"><span id="process-step3-title">Duyệt mẫu</span></h3>
                         <p class="text-sm text-gray-600"><span id="process-step3-desc">Chỉnh sửa file, cân màu và xác nhận mẫu trước khi sản xuất hàng loạt.</span></p>
                     </div>
                     <div class="process-step p-5 animate-on-scroll">
-                        <p class="text-xs font-bold text-blue-700 mb-2">BƯỚC 04</p>
+                        <p id="process-step4-label" class="text-xs font-bold text-blue-700 mb-2">BƯỚC 04</p>
                         <h3 class="font-semibold mb-2"><span id="process-step4-title">Sản xuất & bàn giao</span></h3>
                         <p class="text-sm text-gray-600"><span id="process-step4-desc">Kiểm tra chất lượng, đóng gói và giao hàng theo tiến độ cam kết.</span></p>
                     </div>
@@ -784,7 +898,7 @@
                     <h3 class="text-2xl font-semibold mb-4"><span id="contact-get-in-touch">Get in Touch</span></h3>
 
                     <div class="mb-6">
-                        <h4 class="font-semibold text-xl mb-2">HL Hoang Long Trading & Service Co., Ltd</h4>
+                        <h4 id="contact-company-name" class="font-semibold text-xl mb-2">HL Hoang Long Trading & Service Co., Ltd</h4>
                         <p><span id="contact-headquarters">Our offfice: Ho Chi Minh City, Vietnam</span></p>
                     </div>
 
@@ -806,7 +920,7 @@
                     </div>
 
                     <div class="mt-8 rounded-2xl border border-white/30 bg-white/10 p-3 shadow-lg backdrop-blur-sm">
-                        <h4 class="text-lg font-semibold mb-3">Thông báo nghỉ lễ / Holiday Notice</h4>
+                        <h4 id="holiday-notice-title" class="text-lg font-semibold mb-3">Thông báo nghỉ lễ / Holiday Notice</h4>
                         <iframe src="https://sincere-existence-b7e.notion.site/ebd//2547f58a71dd80aabe89cd6c38cfd21e" class="w-full rounded-xl bg-white" width="100%" height="600" frameborder="0" style="border: none;" loading="lazy" allowfullscreen></iframe>
                     </div>
 
@@ -898,7 +1012,7 @@
 
         <!-- Language Selection Screen -->
         <div id="language-selector" class="flex-1 flex flex-col items-center justify-center p-4 space-y-4">
-            <h4 class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
+            <h4 id="language-selector-title" class="font-bold text-gray-700">Chọn ngôn ngữ của bạn:</h4>
             <button class="lang-button" data-lang="vi">Tiếng Việt</button>
             <button class="lang-button" data-lang="en">English</button>
             <button class="lang-button" data-lang="zh">中文</button>
@@ -996,9 +1110,64 @@
             const sampleQuestionsContainer = document.getElementById('sample-questions');
             const chatInputContainer = document.getElementById('chat-input-container');
             const langSelector = document.getElementById('language-selector');
-            const langButtons = document.querySelectorAll('.lang-button');
-            let currentLanguage = '';
+            const pageLangButtons = document.querySelectorAll('.lang-switcher-button');
+            const chatLangButtons = document.querySelectorAll('#language-selector .lang-button');
+            const themeModeButton = document.getElementById('theme-mode-toggle');
+            let currentPageLanguage = localStorage.getItem('hlhoanglongLang') || 'vi';
+            let currentChatLanguage = 'vi';
+            let currentThemeMode = localStorage.getItem('hlhoanglongThemeMode') || 'auto';
 
+            const themeModeTitles = {
+                vi: { light: 'Đang sáng', dark: 'Đang tối', autoLight: 'Tự động: sáng', autoDark: 'Tự động: tối' },
+                en: { light: 'Light mode', dark: 'Dark mode', autoLight: 'Auto: light', autoDark: 'Auto: dark' },
+                zh: { light: '亮色模式', dark: '夜间模式', autoLight: '自动：亮色', autoDark: '自动：夜间' }
+            };
+
+            function getAutoThemeMode() {
+                const now = new Date();
+                const minutes = now.getHours() * 60 + now.getMinutes();
+                return minutes >= 360 && minutes < 1020 ? 'light' : 'dark';
+            }
+
+            function getResolvedThemeMode(mode = currentThemeMode) {
+                return mode === 'auto' ? getAutoThemeMode() : mode;
+            }
+
+            function updateThemeButtonIcon() {
+                if (!themeModeButton) return;
+                const resolvedMode = getResolvedThemeMode();
+                const iconClass = resolvedMode === 'light' ? 'fa-moon' : 'fa-sun';
+                themeModeButton.innerHTML = `<i class="fas ${iconClass}"></i>`;
+                const titles = themeModeTitles[currentPageLanguage] || themeModeTitles.vi;
+                themeModeButton.title = currentThemeMode === 'auto'
+                    ? (resolvedMode === 'light' ? titles.autoLight : titles.autoDark)
+                    : (resolvedMode === 'light' ? titles.light : titles.dark);
+            }
+
+            function applyThemeMode(mode, save = true) {
+                currentThemeMode = mode;
+                if (save) localStorage.setItem('hlhoanglongThemeMode', mode);
+                const resolvedMode = getResolvedThemeMode(mode);
+                document.body.classList.remove('light-mode', 'dark-mode');
+                document.body.classList.add(`${resolvedMode}-mode`);
+                updateThemeButtonIcon();
+            }
+
+            function toggleThemeMode() {
+                const resolvedMode = getResolvedThemeMode();
+                const nextMode = resolvedMode === 'light' ? 'dark' : 'light';
+                applyThemeMode(nextMode);
+            }
+
+            function startThemeModeWatcher() {
+                if (currentThemeMode !== 'auto') return;
+                setInterval(() => {
+                    const resolvedMode = getAutoThemeMode();
+                    if (!document.body.classList.contains(`${resolvedMode}-mode`)) {
+                        applyThemeMode('auto', false);
+                    }
+                }, 60000);
+            }
 
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             if ('IntersectionObserver' in window) {
@@ -1430,9 +1599,9 @@
             };
 
             const sampleQuestions = {
-                'vi': ['Sản phẩm của công ty bạn là gì?', 'Giới thiệu về dịch vụ của công ty', 'Làm sao để liên hệ công ty?', 'Công ty có đối tác quốc tế không?'],
-                'en': ['What products do you offer?', 'Tell me about your services', 'How can I contact you?', 'Do you have international partners?'],
-                'zh': ['你们有哪些产品？', '介绍一下你们的服务', '如何联系公司？', '你们有国际合作伙伴吗？']
+                'vi': ['Cho tôi biết về dịch vụ', 'Tôi muốn báo giá', 'Làm sao để liên hệ?'],
+                'en': ['Tell me about your services', 'I need a quote', 'How can I contact you?'],
+                'zh': ['介绍你们的服务', '我需要报价', '如何联系你们？']
             };
 
 
@@ -1441,6 +1610,318 @@
                 en: 'I can help with many topics: printing products, quotation, production lead time, minimum order quantity, design files, delivery, payment, international cooperation, and contact info. You can ask like: “Quote for 5,000 labels”, “How long does menu printing take?”, or “What file format do you need?”. For fast quotation, please leave your phone/email and the HL Hoang Long team will support you promptly.',
                 zh: '我可以支持很多主题：印刷产品、报价、生产周期、起订量、设计文件要求、配送、付款、国际合作和联系方式。您可以这样提问：“5000张标签报价多少？”，“菜单印刷需要多久？”，“设计文件需要什么格式？”。如需快速报价，请留下电话/邮箱，我们团队会尽快联系您。'
             };
+
+            const pageText = {
+                vi: {
+                    'nav-products': 'Sản phẩm',
+                    'nav-history': 'Câu chuyện',
+                    'nav-partners': 'Đối tác toàn cầu',
+                    'nav-strengths': 'Tại sao chọn chúng tôi',
+                    'nav-process': 'Quy trình',
+                    'nav-faq': 'FAQ',
+                    'nav-contact': 'Liên hệ',
+                    'hero-title': 'CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HL HOÀNG LONG',
+                    'header-tagline': 'Công ty TNHH Thương mại Dịch vụ HL Hoàng Long',
+                    'hero-subtitle': 'Chuyên nghiệp - Chất lượng - Uy tín',
+                    'stat-global-clients': 'Khách hàng toàn cầu',
+                    'stat-printed-products': 'Sản phẩm in ấn',
+                    'hero-cta': 'Liên hệ ngay',
+                    'products-title': 'Sản phẩm tiêu biểu',
+                    'products-subtitle': 'Các sản phẩm tiêu biểu của chúng tôi',
+                    'prd1-title': 'Thiệp mời',
+                    'prd1-desc': 'Thiết kế sang trọng & chất lượng cao cho sự kiện đặc biệt',
+                    'prd2-title': 'Nhãn dán',
+                    'prd2-desc': 'Nhãn dán cao cấp – Đa dạng mẫu mã và kích thước',
+                    'prd3-title': 'Nhãn mác',
+                    'prd3-desc': 'Nhãn mác bền đẹp cho thương hiệu sản phẩm chuyên nghiệp',
+                    'prd4-title': 'Tờ rơi',
+                    'prd4-desc': 'Thiết kế nổi bật giúp quảng bá sản phẩm và dịch vụ hiệu quả',
+                    'prd5-title': 'Menu',
+                    'prd5-desc': 'Menu phong cách và bắt mắt cho nhà hàng và cà phê',
+                    'prd6-title': 'Bao bì tùy chỉnh',
+                    'prd6-desc': 'Thiết kế bao bì nổi bật, thu hút khách hàng ngay từ cái nhìn đầu tiên',
+                    'history-title': 'Câu chuyện của chúng tôi',
+                    'history-growth-title': 'Chặng đường phát triển',
+                    'history-p1': 'Được thành lập năm 2012, HL Hoang Long Trading & Service Co., Ltd. phát triển từ tiền thân HL Hoang Long Co., Ltd.',
+                    'history-p2': 'Với hơn một thập kỷ kinh nghiệm in ấn, quảng cáo và xuất nhập khẩu, chúng tôi tự hào cung cấp sản phẩm chất lượng cao và dịch vụ chuyên nghiệp.',
+                    'history-p3': 'HL Hoang Long ngày càng mở rộng thị trường quốc tế, hợp tác với nhiều đối tác hàng đầu.',
+                    'partners-title': 'Hợp tác toàn cầu',
+                    'partner-country-vn': 'Việt Nam',
+                    'partner-location-vn': 'Toàn quốc',
+                    'partner-country-us': 'Hoa Kỳ',
+                    'partner-location-us': 'Nevada',
+                    'partner-country-cn': 'Trung Quốc',
+                    'partner-location-cn': 'Quảng Đông, Thượng Hải',
+                    'testimonials-title': 'Khách hàng nói gì về chúng tôi',
+                    'testimonial1-location': 'Nevada, Hoa Kỳ',
+                    'testimonial1-text': 'HL Hoang Long đã cung cấp cho chúng tôi nhãn mác chất lượng cao với giá cả hợp lý. Dịch vụ chuyên nghiệp và đúng hạn.',
+                    'testimonial2-location': 'Thượng Hải, Trung Quốc',
+                    'testimonial2-text': 'Làm việc với HL Hoang Long là một trải nghiệm tuyệt vời. Họ luôn đáp ứng tất cả yêu cầu của chúng tôi với độ chính xác cao.',
+                    'strengths-title': 'Tại sao chọn HL Hoàng Long',
+                    'strengths-subtitle': 'Những điểm mạnh giúp chúng tôi phù hợp với doanh nghiệp cần in ấn và quảng cáo chuyên nghiệp, ổn định và thẩm mỹ cao.',
+                    'chip-1': 'MOQ linh hoạt',
+                    'chip-2': 'In màu chuẩn',
+                    'chip-3': 'Gia công đa dạng',
+                    'chip-4': 'Giao hàng đúng hẹn',
+                    'chip-5': 'Hỗ trợ song ngữ',
+                    'strength-card1-title': 'Năng lực in ấn',
+                    'strength-card1-desc': 'Đáp ứng tốt đơn hàng thường xuyên và đơn hàng theo mùa với chất lượng đồng đều.',
+                    'strength-card2-title': 'Thiết kế theo thương hiệu',
+                    'strength-card2-desc': 'Tối ưu bố cục, màu sắc và vật liệu để bộ nhận diện nổi bật tại điểm bán.',
+                    'strength-card3-title': 'Tốc độ triển khai',
+                    'strength-card3-desc': 'Quy trình rõ ràng giúp rút ngắn thời gian từ duyệt file đến thành phẩm.',
+                    'strength-card4-title': 'Đối tác dài hạn',
+                    'strength-card4-desc': 'Tư vấn giải pháp tối ưu chi phí và đảm bảo hiệu quả theo từng chiến dịch.',
+                    'process-title': 'Quy trình làm việc 4 bước',
+                    'process-subtitle': 'Minh bạch, nhanh gọn và dễ theo dõi cho mọi khách hàng doanh nghiệp.',
+                    'process-step1-title': 'Tiếp nhận yêu cầu',
+                    'process-step1-desc': 'Thu thập mục tiêu, số lượng, vật liệu, tiến độ và ngân sách.',
+                    'process-step2-title': 'Tư vấn & báo giá',
+                    'process-step2-desc': 'Đề xuất quy cách phù hợp, gửi báo giá rõ hạng mục và thời gian.',
+                    'process-step3-title': 'Duyệt mẫu',
+                    'process-step3-desc': 'Chỉnh sửa file, cân màu và xác nhận mẫu trước khi sản xuất hàng loạt.',
+                    'process-step4-title': 'Sản xuất & bàn giao',
+                    'process-step4-desc': 'Kiểm tra chất lượng, đóng gói và giao hàng theo tiến độ cam kết.',
+                    'process-step1-label': 'BƯỚC 01',
+                    'process-step2-label': 'BƯỚC 02',
+                    'process-step3-label': 'BƯỚC 03',
+                    'process-step4-label': 'BƯỚC 04',
+                    'faq-title': 'Câu hỏi thường gặp',
+                    'faq-q1': 'Thời gian hoàn thành đơn hàng là bao lâu?',
+                    'faq-a1': 'Tùy theo sản phẩm và số lượng, thông thường từ 3–10 ngày làm việc sau khi duyệt mẫu.',
+                    'faq-q2': 'Công ty có hỗ trợ thiết kế file in không?',
+                    'faq-a2': 'Có. Đội ngũ của chúng tôi hỗ trợ tối ưu file, kiểm tra lỗi kỹ thuật và tư vấn định hướng hình ảnh thương hiệu.',
+                    'faq-q3': 'Có nhận đơn hàng xuất khẩu không?',
+                    'faq-a3': 'Có. Chúng tôi đã hợp tác đối tác tại Việt Nam, Mỹ và Trung Quốc, hỗ trợ chứng từ theo yêu cầu.',
+                    'contact-title': 'Liên hệ',
+                    'contact-get-in-touch': 'Liên hệ với chúng tôi',
+                    'contact-company-name': 'Công ty TNHH Thương Mại Dịch Vụ HL Hoàng Long',
+                    'contact-headquarters': 'Văn phòng: TP. Hồ Chí Minh, Việt Nam',
+                    'contact-hours': 'Thứ Hai – Thứ Sáu: 8:00 – 20:00 | Cuối tuần: 9:00 – 18:00',
+                    'contact-send-request': 'Gửi yêu cầu',
+                    'contact-form-desc': 'Hãy để lại thông tin liên hệ để chúng tôi hỗ trợ bạn nhanh nhất.',
+                    'footer-slogan-1': 'Chuyên nghiệp – Chất lượng – Uy tín',
+                    'footer-slogan-2': 'Hợp tác toàn cầu cho sản phẩm xuất sắc',
+                    'chatbot-welcome': 'Xin chào, tôi có thể giúp gì cho bạn?',
+                    'holiday-notice-title': 'Thông báo nghỉ lễ',
+                    'footer-rights': 'Bản quyền thuộc về HL HOÀNG LONG.',
+                    'language-selector-title': 'Chọn ngôn ngữ của bạn:',
+                    'chat-input': 'Gõ câu hỏi của bạn...' 
+                },
+                en: {
+                    'nav-products': 'Product Range',
+                    'nav-history': 'Our Story',
+                    'nav-partners': 'Global Partners',
+                    'nav-strengths': 'Why Us',
+                    'nav-process': 'Process',
+                    'nav-faq': 'FAQ',
+                    'nav-contact': 'Contact',
+                    'hero-title': 'HL HOANG LONG TRADING & SERVICE CO., LTD.',
+                    'header-tagline': 'HL Hoang Long Service Trading Company Limited',
+                    'hero-subtitle': 'Professional - Quality - Reliable',
+                    'stat-global-clients': 'Global Clients',
+                    'stat-printed-products': 'Printed and fabricated products',
+                    'hero-cta': 'Contact us now',
+                    'products-title': 'Our Featured Products',
+                    'products-subtitle': 'Featured products we offer',
+                    'prd1-title': 'Invitation Cards',
+                    'prd1-desc': 'Elegant Designs & High Quality for Special Events',
+                    'prd2-title': 'Sticker',
+                    'prd2-desc': 'Premium stickers available in a wide range of designs and sizes',
+                    'prd3-title': 'Label',
+                    'prd3-desc': 'Premium, long-lasting labels for professional branding',
+                    'prd4-title': 'Leaflet',
+                    'prd4-desc': 'Striking designs for effective product and service promotion',
+                    'prd5-title': 'Menu',
+                    'prd5-desc': 'Stylish and eye-catching menus for restaurants and coffee shops',
+                    'prd6-title': 'Custom Packaging',
+                    'prd6-desc': 'Distinctive packaging designs to enhance customer appeal',
+                    'history-title': 'Our Story',
+                    'history-growth-title': 'Our Growth Story',
+                    'history-p1': 'Established in 2012, HL Hoang Long Trading & Service Co., Ltd. originated from its predecessor, HL Hoang Long Co., Ltd.',
+                    'history-p2': 'With more than a decade of expertise in printing, advertising, and import–export, we proudly provide clients with premium-quality products and professional services.',
+                    'history-p3': 'HL Hoang Long has steadily expanded its global presence and collaborated with leading partners worldwide.',
+                    'partners-title': 'Global Partnership',
+                    'partner-country-vn': 'Vietnam',
+                    'partner-location-vn': 'Nationwide',
+                    'partner-country-us': 'United States',
+                    'partner-location-us': 'Nevada',
+                    'partner-country-cn': 'China',
+                    'partner-location-cn': 'Guangdong, Shanghai',
+                    'testimonials-title': 'What Our Clients Say',
+                    'testimonial1-location': 'Nevada, USA',
+                    'testimonial1-text': 'HL Hoang Long has provided us with high-quality label products at reasonable prices. The service is professional and punctual.',
+                    'testimonial2-location': 'Shanghai, China',
+                    'testimonial2-text': 'Working with HL Hoang Long was a great experience. They always met all our requirements with great precision.',
+                    'strengths-title': 'Why Choose HL Hoang Long',
+                    'strengths-subtitle': 'Strengths that make us ideal for professional, stable and visually appealing printing and advertising solutions.',
+                    'chip-1': 'Flexible MOQ',
+                    'chip-2': 'Accurate color printing',
+                    'chip-3': 'Diverse processing',
+                    'chip-4': 'On-time delivery',
+                    'chip-5': 'Bilingual support',
+                    'strength-card1-title': 'Printing capacity',
+                    'strength-card1-desc': 'Well-equipped to handle both regular and seasonal orders with consistent quality.',
+                    'strength-card2-title': 'Brand-focused design',
+                    'strength-card2-desc': 'Optimized layout, colors and materials to make your brand stand out at point of sale.',
+                    'strength-card3-title': 'Fast implementation',
+                    'strength-card3-desc': 'A clear process shortens the time from file approval to finished product.',
+                    'strength-card4-title': 'Long-term partnerships',
+                    'strength-card4-desc': 'We advise cost-efficient solutions and ensure effectiveness for each campaign.',
+                    'process-title': '4-step working process',
+                    'process-subtitle': 'Transparent, quick, and easy to follow for all business customers.',
+                    'process-step1-title': 'Receive request',
+                    'process-step1-desc': 'Collect goals, quantity, material, schedule and budget.',
+                    'process-step2-title': 'Consultation & quotation',
+                    'process-step2-desc': 'Propose suitable specifications and send a clear quote with timeline.',
+                    'process-step3-title': 'Sample approval',
+                    'process-step3-desc': 'Edit files, adjust colors, and confirm samples before mass production.',
+                    'process-step4-title': 'Production & delivery',
+                    'process-step4-desc': 'Check quality, package and deliver on the agreed schedule.',
+                    'process-step1-label': 'STEP 01',
+                    'process-step2-label': 'STEP 02',
+                    'process-step3-label': 'STEP 03',
+                    'process-step4-label': 'STEP 04',
+                    'faq-title': 'Frequently Asked Questions',
+                    'faq-q1': 'How long does an order take to complete?',
+                    'faq-a1': 'Depending on product and quantity, it usually takes 3–10 business days after sample approval.',
+                    'faq-q2': 'Do you support print file design?',
+                    'faq-a2': 'Yes. Our team helps optimize files, check technical issues, and advise on brand image direction.',
+                    'faq-q3': 'Do you accept export orders?',
+                    'faq-a3': 'Yes. We have worked with partners in Vietnam, the USA, and China, and support required documents.',
+                    'contact-title': 'Contact Us',
+                    'contact-get-in-touch': 'Get in Touch',
+                    'contact-company-name': 'HL Hoang Long Trading & Service Co., Ltd.',
+                    'contact-headquarters': 'Office: Ho Chi Minh City, Vietnam',
+                    'contact-hours': 'Mon – Fri: 8:00 AM – 8:00 PM | Weekend: 9:00 AM – 6:00 PM',
+                    'contact-send-request': 'Submit Request',
+                    'contact-form-desc': 'Kindly leave your contact details so we can assist you in the best possible way.',
+                    'footer-slogan-1': 'Professionalism – Quality – Reliability',
+                    'footer-slogan-2': 'Global Partnerships for Excellence in Products',
+                    'chatbot-welcome': 'Hi, how can I assist you?',
+                    'holiday-notice-title': 'Holiday Notice',
+                    'footer-rights': 'All rights reserved.',
+                    'language-selector-title': 'Choose your language:',
+                    'chat-input': 'Type your question...'
+                },
+                zh: {
+                    'nav-products': '产品',
+                    'nav-history': '我们的故事',
+                    'nav-partners': '全球合作',
+                    'nav-strengths': '为什么选择我们',
+                    'nav-process': '流程',
+                    'nav-faq': 'FAQ',
+                    'nav-contact': '联系',
+                    'hero-title': 'HL HOANG LONG贸易服务有限公司',
+                    'header-tagline': 'HL Hoang Long贸易服务有限公司',
+                    'hero-subtitle': '专业 - 质量 - 信誉',
+                    'stat-global-clients': '全球客户',
+                    'stat-printed-products': '印刷与加工产品',
+                    'hero-cta': '立即联系我们',
+                    'products-title': '推荐产品',
+                    'products-subtitle': '我们精选的推荐产品',
+                    'prd1-title': '请柬',
+                    'prd1-desc': '优雅设计与高品质，适用于特别活动',
+                    'prd2-title': '贴纸',
+                    'prd2-desc': '优质贴纸，提供多种设计与尺寸',
+                    'prd3-title': '标签',
+                    'prd3-desc': '优质耐用标签，打造专业产品形象',
+                    'prd4-title': '传单',
+                    'prd4-desc': '引人注目的设计，有效推广产品与服务',
+                    'prd5-title': '菜单',
+                    'prd5-desc': '时尚且吸引人的菜单，适用于餐厅和咖啡馆',
+                    'prd6-title': '定制包装',
+                    'prd6-desc': '独特吸引人的包装设计，提升客户吸引力',
+                    'history-title': '我们的故事',
+                    'history-growth-title': '我们的成长历程',
+                    'history-p1': 'HL Hoang Long贸易服务有限公司成立于2012年，起源于其前身HL Hoang Long有限公司。',
+                    'history-p2': '凭借十多年印刷、广告和进出口经验，我们自豪地为客户提供高质量产品和专业服务。',
+                    'history-p3': 'HL Hoang Long稳步扩大其国际市场影响力，与多家领先合作伙伴开展合作。',
+                    'partners-title': '全球合作',
+                    'partner-country-vn': '越南',
+                    'partner-location-vn': '全国范围',
+                    'partner-country-us': '美国',
+                    'partner-location-us': '内华达州',
+                    'partner-country-cn': '中国',
+                    'partner-location-cn': '广东、上海',
+                    'testimonials-title': '客户对我们的评价',
+                    'testimonial1-location': '美国内华达州',
+                    'testimonial1-text': 'HL Hoang Long为我们提供了物美价廉的高质量标签产品。服务专业且准时。',
+                    'testimonial2-location': '中国上海',
+                    'testimonial2-text': '与HL Hoang Long合作是一段很好的体验。他们始终以极高的精度满足我们的所有需求。',
+                    'strengths-title': '为什么选择HL Hoàng Long',
+                    'strengths-subtitle': '我们的优势适合寻求专业、稳定且美观印刷与广告解决方案的企业。',
+                    'chip-1': '灵活起订量',
+                    'chip-2': '精准印刷',
+                    'chip-3': '多样加工',
+                    'chip-4': '准时交货',
+                    'chip-5': '双语支持',
+                    'strength-card1-title': '印刷能力',
+                    'strength-card1-desc': '可稳定满足常规与季节性订单，保持质量一致。',
+                    'strength-card2-title': '品牌设计',
+                    'strength-card2-desc': '优化排版、颜色与材料，使品牌在销售点脱颖而出。',
+                    'strength-card3-title': '快速执行',
+                    'strength-card3-desc': '清晰流程缩短从文件审核到成品的时间。',
+                    'strength-card4-title': '长期合作',
+                    'strength-card4-desc': '提供成本优化方案，确保每个活动的效果。',
+                    'process-title': '四步工作流程',
+                    'process-subtitle': '透明、快捷，便于所有企业客户跟进。',
+                    'process-step1-title': '接收需求',
+                    'process-step1-desc': '收集目标、数量、材料、进度和预算。',
+                    'process-step2-title': '咨询与报价',
+                    'process-step2-desc': '提出合适规范并发送清晰报价及时间表。',
+                    'process-step3-title': '样品确认',
+                    'process-step3-desc': '修改文件、校色，并在批量生产前确认样品。',
+                    'process-step4-title': '生产与交付',
+                    'process-step4-desc': '检查质量、包装并按约定时间交付。',
+                    'process-step1-label': '步骤 01',
+                    'process-step2-label': '步骤 02',
+                    'process-step3-label': '步骤 03',
+                    'process-step4-label': '步骤 04',
+                    'faq-title': '常见问题',
+                    'faq-q1': '订单通常需要多长时间完成？',
+                    'faq-a1': '视产品和数量而定，通常在样品确认后需3–10个工作日。',
+                    'faq-q2': '公司是否支持印刷文件设计？',
+                    'faq-a2': '支持。我们的团队协助优化文件、检查技术问题，并提供品牌形象建议。',
+                    'faq-q3': '是否接受出口订单？',
+                    'faq-a3': '接受。我们已与越南、美国和中国的合作伙伴合作，并提供所需凭证。',
+                    'contact-title': '联系我们',
+                    'contact-get-in-touch': '联系我们',
+                    'contact-company-name': 'HL Hoang Long贸易服务有限公司',
+                    'contact-headquarters': '办公室：越南胡志明市',
+                    'contact-hours': '周一至周五：8:00 – 20:00 | 周末：9:00 – 18:00',
+                    'contact-send-request': '提交请求',
+                    'contact-form-desc': '请留下您的联系方式，以便我们尽快为您提供帮助。',
+                    'footer-slogan-1': '专业 – 质量 – 信誉',
+                    'footer-slogan-2': '全球合作，成就卓越产品',
+                    'chatbot-welcome': '您好，我能为您做些什么？',
+                    'holiday-notice-title': '节假日通知',
+                    'footer-rights': '版权所有。',
+                    'language-selector-title': '请选择您的语言：',
+                    'chat-input': '请输入您的问题...' 
+                }
+            };
+
+            function setElementText(id, value) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (id === 'chat-input') {
+                    el.placeholder = value;
+                    return;
+                }
+                el.innerHTML = value;
+            }
+
+            function translatePage(lang) {
+                if (!pageText[lang]) return;
+                document.documentElement.lang = lang === 'vi' ? 'vi' : lang === 'zh' ? 'zh' : 'en';
+                Object.keys(pageText[lang]).forEach(id => setElementText(id, pageText[lang][id]));
+                localStorage.setItem('hlhoanglongLang', lang);
+            }
+
+            translatePage(currentPageLanguage);
+            applyThemeMode(currentThemeMode, false);
+            startThemeModeWatcher();
 
             function createMessage(message, isUser) {
                 const messageDiv = document.createElement('div');
@@ -1540,18 +2021,31 @@
             }
 
             // Event listeners
-            langButtons.forEach(button => {
+            pageLangButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    currentLanguage = button.dataset.lang;
+                    currentPageLanguage = button.dataset.lang;
+                    translatePage(currentPageLanguage);
+                    updateThemeButtonIcon();
+                });
+            });
+
+            if (themeModeButton) {
+                themeModeButton.addEventListener('click', () => {
+                    toggleThemeMode();
+                });
+            }
+
+            chatLangButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    currentChatLanguage = button.dataset.lang;
                     langSelector.classList.add('hidden');
                     chatMessages.classList.remove('hidden');
                     chatInputContainer.classList.remove('hidden');
-                    
-                    const greeting = (currentLanguage === 'vi') ? responses.vi.chào.response :
-                                     (currentLanguage === 'en') ? responses.en.hello.response :
+                    const greeting = (currentChatLanguage === 'vi') ? responses.vi.chào.response :
+                                     (currentChatLanguage === 'en') ? responses.en.hello.response :
                                      responses.zh.你好.response;
                     createMessage(greeting, false);
-                    showSampleQuestions(currentLanguage);
+                    showSampleQuestions(currentChatLanguage);
                 });
             });
 
@@ -1614,7 +2108,7 @@
                 setTimeout(() => {
                     removeTypingIndicator(typingIndicator);
 
-                    const { bestScore, bestResponse } = getBestKeywordResponse(message, currentLanguage);
+                    const { bestScore, bestResponse } = getBestKeywordResponse(message, currentChatLanguage);
                     const isConfidentMatch = bestScore >= 3;
 
                     if (isConfidentMatch && bestResponse) {
@@ -1622,8 +2116,8 @@
                         return;
                     }
 
-                    createMessage(smartFallbackResponses[currentLanguage] || smartFallbackResponses.vi, false);
-                    showSampleQuestions(currentLanguage);
+                    createMessage(smartFallbackResponses[currentChatLanguage] || smartFallbackResponses.vi, false);
+                    showChatInput();
                 }, 1200);
             }
         });
