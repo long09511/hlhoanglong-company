@@ -335,16 +335,27 @@
             background: radial-gradient(circle at top, #020821 0%, #06153f 35%, #081a4d 100%) !important;
             color: #e7f1ff;
         }
+        /* text chính */
+        body.dark-mode {
+            color: #e7f1ff;
+        }
 
-        /* 👇 THÊM ĐOẠN NÀY NGAY DƯỚI */
-        body.dark-mode p,
-        body.dark-mode span,
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3,
-        body.dark-mode h4 {
+        /* text phụ */
+        body.dark-mode .text-gray-600,
+        body.dark-mode .text-gray-700,
+        body.dark-mode .text-gray-800 {
+            color: #bcd3ff !important;
+        }
+
+        /* tiêu đề */
+        body.dark-mode .text-blue-900 {
             color: #e7f1ff !important;
         }
+
+       /* accent */
+       body.dark-mode .text-blue-700 {
+            color: #6fb3ff !important;
+       }
 
         body.dark-mode header {
             background-color: rgba(4, 16, 42, 0.96) !important;
@@ -368,12 +379,6 @@
         body.dark-mode .sample-question-button:hover,
         body.dark-mode .theme-toggle-button:hover {
             background-color: #0d2b6a !important;
-        }
-
-        body.dark-mode .text-blue-700,
-        body.dark-mode .text-blue-900,
-        body.dark-mode .text-sky-600 {
-            color: #8cc4ff !important;
         }
 
         body.dark-mode .text-gray-600,
@@ -417,10 +422,6 @@
         body.dark-mode .border-white\/30,
         body.dark-mode .border-white {
             border-color: rgba(148, 163, 184, 0.35) !important;
-        }
-
-        body.dark-mode .bg-gray-50 {
-            background-color: #020617 !important;
         }
 
         body.dark-mode .border-blue-700\/60 {
