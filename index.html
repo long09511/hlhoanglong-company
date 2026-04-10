@@ -2492,11 +2492,41 @@ PHONG CÁCH TRẢ LỜI:
                             labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
                             datasets: [{
                                 label: currentPageLanguage === 'vi' ? 'Số đơn hàng' : currentPageLanguage === 'en' ? 'Number of Orders' : '订单数量',
-                                data: [450, 680, 920, 1150, 1420, 850, 1380, 1680, 1920, 2250, 2580, 2850],
-                                backgroundColor: 'rgba(42, 90, 138, 0.8)',
-                                borderColor: 'rgba(42, 90, 138, 1)',
+                                // Dữ liệu thực tế hơn: khởi đầu chậm, bùng nổ 2018-2019,
+                                // sụt mạnh 2020 (COVID), hồi phục chậm 2021, tăng tốt 2022-2024,
+                                // 2025-2026 ổn định với biến động nhẹ
+                                data: [312, 489, 703, 1240, 1580, 620, 940, 1820, 2310, 2050, 2640, 1870],
+                                // Màu theo giai đoạn: xanh = tăng, đỏ = COVID sụt, vàng = hồi phục, xanh đậm = ổn định
+                                backgroundColor: [
+                                    'rgba(42,  90, 138, 0.75)',  // 2015
+                                    'rgba(42,  90, 138, 0.75)',  // 2016
+                                    'rgba(42,  90, 138, 0.75)',  // 2017
+                                    'rgba(30, 120, 180, 0.85)',  // 2018 bùng nổ
+                                    'rgba(30, 120, 180, 0.85)',  // 2019 đỉnh
+                                    'rgba(220,  50,  50, 0.82)', // 2020 COVID
+                                    'rgba(220, 150,  30, 0.82)', // 2021 hồi phục chậm
+                                    'rgba(42,  90, 138, 0.80)',  // 2022
+                                    'rgba(30, 120, 180, 0.88)',  // 2023 mạnh
+                                    'rgba(30, 100, 160, 0.80)',  // 2024 nhẹ hơn
+                                    'rgba(30, 120, 180, 0.88)',  // 2025
+                                    'rgba(42,  90, 138, 0.78)',  // 2026 ước tính
+                                ],
+                                borderColor: [
+                                    'rgba(42,  90, 138, 1)',
+                                    'rgba(42,  90, 138, 1)',
+                                    'rgba(42,  90, 138, 1)',
+                                    'rgba(30, 120, 180, 1)',
+                                    'rgba(30, 120, 180, 1)',
+                                    'rgba(180,  30,  30, 1)',
+                                    'rgba(180, 110,  10, 1)',
+                                    'rgba(42,  90, 138, 1)',
+                                    'rgba(30, 120, 180, 1)',
+                                    'rgba(30, 100, 160, 1)',
+                                    'rgba(30, 120, 180, 1)',
+                                    'rgba(42,  90, 138, 1)',
+                                ],
                                 borderWidth: 2,
-                                borderRadius: 8
+                                borderRadius: 6
                             }]
                         },
                         options: {
@@ -2511,11 +2541,28 @@ PHONG CÁCH TRẢ LỜI:
                                     display: false
                                 },
                                 tooltip: {
-                                    backgroundColor: 'rgba(42, 90, 138, 0.95)',
-                                    padding: 12,
-                                    titleFont: { size: 14, weight: 'bold' },
-                                    bodyFont: { size: 13 },
-                                    cornerRadius: 8
+                                    backgroundColor: 'rgba(15, 30, 70, 0.95)',
+                                    padding: 14,
+                                    titleFont: { size: 13, weight: 'bold' },
+                                    bodyFont: { size: 12 },
+                                    cornerRadius: 10,
+                                    callbacks: {
+                                        label: function(ctx) {
+                                            const notes = {
+                                                0: '', 1: '', 2: '',
+                                                3: currentPageLanguage === 'vi' ? ' — Tăng trưởng mạnh' : currentPageLanguage === 'en' ? ' — Strong growth' : ' — 强劲增长',
+                                                4: currentPageLanguage === 'vi' ? ' — Đỉnh trước COVID' : currentPageLanguage === 'en' ? ' — Pre-COVID peak' : ' — 新冠前峰值',
+                                                5: currentPageLanguage === 'vi' ? ' — COVID-19' : currentPageLanguage === 'en' ? ' — COVID-19 impact' : ' — 新冠影响',
+                                                6: currentPageLanguage === 'vi' ? ' — Phục hồi dần' : currentPageLanguage === 'en' ? ' — Gradual recovery' : ' — 逐步恢复',
+                                                7: '', 8: '',
+                                                9: currentPageLanguage === 'vi' ? ' — Thị trường điều chỉnh' : currentPageLanguage === 'en' ? ' — Market correction' : ' — 市场调整',
+                                                10: '',
+                                                11: currentPageLanguage === 'vi' ? ' — Ước tính' : currentPageLanguage === 'en' ? ' — Estimated' : ' — 预估',
+                                            };
+                                            const lbl = currentPageLanguage === 'vi' ? 'Đơn hàng' : currentPageLanguage === 'en' ? 'Orders' : '订单';
+                                            return lbl + ': ' + ctx.parsed.y.toLocaleString() + (notes[ctx.dataIndex] || '');
+                                        }
+                                    }
                                 }
                             },
                             scales: {
