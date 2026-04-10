@@ -6,8 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HL Hoang Long Service Trading Company Limited</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo_công_ty.png">
+    <!-- Favicon – rounded corners applied via canvas -->
+    <link rel="icon" type="image/png" href="logo_công_ty.png" id="favicon-link">
+    <script>
+        (function () {
+            var RADIUS = 0.22; // 0–0.5, fraction of icon size (0.22 ≈ subtle rounding)
+            var src    = 'logo_công_ty.png';
+            var img    = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function () {
+                var SIZE = 64;
+                var r    = SIZE * RADIUS;
+                var cvs  = document.createElement('canvas');
+                cvs.width = cvs.height = SIZE;
+                var ctx = cvs.getContext('2d');
+                ctx.beginPath();
+                ctx.moveTo(r, 0);
+                ctx.lineTo(SIZE - r, 0);
+                ctx.quadraticCurveTo(SIZE, 0, SIZE, r);
+                ctx.lineTo(SIZE, SIZE - r);
+                ctx.quadraticCurveTo(SIZE, SIZE, SIZE - r, SIZE);
+                ctx.lineTo(r, SIZE);
+                ctx.quadraticCurveTo(0, SIZE, 0, SIZE - r);
+                ctx.lineTo(0, r);
+                ctx.quadraticCurveTo(0, 0, r, 0);
+                ctx.closePath();
+                ctx.clip();
+                ctx.drawImage(img, 0, 0, SIZE, SIZE);
+                var link = document.getElementById('favicon-link');
+                if (link) link.href = cvs.toDataURL('image/png');
+            };
+            img.onerror = function () {}; // silently skip if logo missing
+            img.src = src;
+        })();
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -722,7 +754,12 @@
             .header-info-cluster { padding: 0.45rem 0.55rem; }
             .header-info-cluster h1 { font-size: 0.82rem; }
             .header-info-cluster p { display: none; }
-            .flag-cluster { display: none; }
+
+            /* Chỉ giữ lại cờ Việt Nam, ẩn cờ Mỹ và Trung Quốc */
+            .flag-cluster { gap: 0.2rem; padding: 0.3rem 0.4rem; }
+            .flag-vn  { display: inline-block !important; width: 22px; height: 14px; }
+            .flag-us,
+            .flag-cn  { display: none !important; }
 
             .lang-switcher { gap: 0.2rem; }
             .lang-switcher-button { font-size: 0.65rem; padding: 0.28rem 0.38rem; }
@@ -950,9 +987,9 @@
                 <div id="typewriter-text" class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import &amp; Export</div>
             </div>
             <div class="flag-cluster">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag flag-vn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" class="small-flag flag-us">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" class="small-flag flag-cn">
             </div>
             <div class="lang-switcher">
                 <button class="lang-switcher-button lang-button" data-lang="vi">Tiếng Việt</button>
