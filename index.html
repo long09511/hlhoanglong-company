@@ -1463,21 +1463,27 @@
                     <!-- Bar Chart: Orders by Year -->
                     <div class="bg-white/95 p-6 rounded-2xl shadow-md animate-on-scroll">
                         <h3 class="text-xl font-semibold text-blue-900 mb-4 text-center"><span id="chart-orders-title">Số Lượng Đơn Hàng Theo Năm</span></h3>
-                        <div class="relative" style="height: 300px;">
-                            <canvas id="ordersBarChart"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Pie Chart: Orders by Country -->
+  <div class="relative" style="height: 300px;">
+  <canvas id="ordersBarChart"></canvas>
+  </div>
+  <p id="chart-orders-caption" class="mt-4 text-sm text-gray-500 leading-relaxed text-center italic px-2">
+      Dù đại dịch COVID-19 năm 2020 gây ra cú sốc lớn khiến đơn hàng sụt giảm gần 60%, HL Hoàng Long đã kiên trì vượt qua giai đoạn khó khăn và không ngừng củng cố nội lực — để rồi vươn lên mạnh mẽ trong những năm tiếp theo, đạt đỉnh cao mới vào 2023 với hơn 2.300 đơn hàng.
+  </p>
+  </div>
+  
+  <!-- Pie Chart: Orders by Country -->
                     <div class="bg-white/95 p-6 rounded-2xl shadow-md animate-on-scroll">
                         <h3 class="text-xl font-semibold text-blue-900 mb-4 text-center"><span id="chart-countries-title">Phân Bố Đơn Hàng Theo Quốc Gia</span></h3>
-                        <div class="relative" style="height: 300px;">
-                            <canvas id="countriesPieChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="relative" style="height: 300px;">
+  <canvas id="countriesPieChart"></canvas>
+  </div>
+  <p id="chart-countries-caption" class="mt-4 text-sm text-gray-500 leading-relaxed text-center italic px-2">
+      HL Hoàng Long tự hào nhận được sự tin tưởng từ các đối tác quốc tế tại Hoa Kỳ và Trung Quốc — minh chứng cho chất lượng và uy tín vượt ra ngoài biên giới. Bên cạnh đó, cộng đồng doanh nghiệp trong nước luôn là nền tảng vững chắc đồng hành cùng công ty suốt hành trình phát triển.
+  </p>
+  </div>
+  </div>
+  </div>
+  </div>
     </section>
 
     <section id="process" class="py-20 bg-transparent">
@@ -2035,6 +2041,8 @@
                     'footer-slogan-1': 'Chuyên nghiệp – Chất lượng – Uy tín', 'footer-slogan-2': 'Hợp tác toàn cầu cho sản phẩm xuất sắc',
                     'stats-title': 'Thống Kê Hoạt Động', 'stats-subtitle': 'Dữ liệu đơn hàng và đối tác qua các năm',
                     'chart-orders-title': 'Số Lượng Đơn Hàng Theo Năm', 'chart-countries-title': 'Phân Bố Đơn Hàng Theo Quốc Gia',
+                    'chart-orders-caption': 'Dù đại dịch COVID-19 năm 2020 gây ra cú sốc lớn khiến đơn hàng sụt giảm gần 60%, HL Hoàng Long đã kiên trì vượt qua giai đoạn khó khăn và không ngừng củng cố nội lực — để rồi vươn lên mạnh mẽ trong những năm tiếp theo, đạt đỉnh cao mới vào 2023 với hơn 2.300 đơn hàng.',
+                    'chart-countries-caption': 'HL Hoàng Long tự hào nhận được sự tin tưởng từ các đối tác quốc tế tại Hoa Kỳ và Trung Quốc — minh chứng cho chất lượng và uy tín vượt ra ngoài biên giới. Bên cạnh đó, cộng đồng doanh nghiệp trong nước luôn là nền tảng vững chắc đồng hành cùng công ty suốt hành trình phát triển.',
                     'chatbot-welcome': 'Xin chào, tôi có thể giúp gì cho bạn?', 'holiday-notice-title': 'Thông báo nghỉ lễ',
                     'language-selector-title': 'Chọn ngôn ngữ của bạn:', 'chat-input': 'Gõ câu hỏi của bạn...'
                 },
@@ -2095,6 +2103,8 @@
                     'footer-slogan-1': 'Professionalism – Quality – Reliability', 'footer-slogan-2': 'Global Partnerships for Excellence in Products',
                     'stats-title': 'Business Statistics', 'stats-subtitle': 'Order and partner data over the years',
                     'chart-orders-title': 'Orders by Year', 'chart-countries-title': 'Order Distribution by Country',
+                    'chart-orders-caption': 'Despite COVID-19 causing a near 60% drop in orders in 2020, HL Hoang Long persevered through the crisis — steadily rebuilding its capabilities and surging back stronger, reaching a new peak of over 2,300 orders in 2023.',
+                    'chart-countries-caption': 'HL Hoang Long is proud to have earned the trust of international partners in the United States and China — a testament to quality and credibility that extends well beyond Vietnam\'s borders. Domestic enterprises remain our steadfast foundation throughout every chapter of our growth.',
                     'chatbot-welcome': 'Hi, how can I assist you?', 'holiday-notice-title': 'Holiday Notice',
                     'language-selector-title': 'Choose your language:', 'chat-input': 'Type your question...'
                 },
@@ -2155,6 +2165,8 @@
                     'footer-slogan-1': '专业 – 质量 – 信誉', 'footer-slogan-2': '全球合作，成就卓越产品',
                     'stats-title': '业务统计', 'stats-subtitle': '历年订单和合作伙伴数据',
                     'chart-orders-title': '年度订单量', 'chart-countries-title': '国家订单分布',
+                    'chart-orders-caption': '尽管2020年新冠疫情导致订单骤降近60%，HL Hoang Long依然坚韧不拔，持续夯实内功——最终在随后数年强势复苏，并于2023年创下逾2,300单的历史新高。',
+                    'chart-countries-caption': 'HL Hoang Long自豪地赢得了美国与中国国际合作伙伴的高度信任，充分彰显了公司跨越国界的品质与信誉。与此同时，国内企业客户始终是公司发展历程中最坚实的基石与伙伴。',
                     'chatbot-welcome': '您好，我能为您做些什么？', 'holiday-notice-title': '节假日通知',
                     'language-selector-title': '请选择您的语言：', 'chat-input': '请输入您的问题...'
                 }
