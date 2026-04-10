@@ -145,36 +145,46 @@
             }
         }
 
+        /* Logo + cluster ô chữ nằm cạnh nhau */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        /* Logo nằm ngoài ô chữ */
+        .header-logo {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;   /* full hình, không cắt */
+            border-radius: 14px;
+            flex-shrink: 0;
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.14);
+            padding: 3px;          /* khoảng trắng nhỏ quanh logo */
+        }
+
+        /* Ô chứa chữ tên công ty */
         .header-info-cluster {
             display: inline-flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.7rem 1.1rem;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.65rem 1rem;
             border-radius: 0.8rem;
             background: linear-gradient(145deg, rgba(219, 234, 254, 0.72), rgba(239, 246, 255, 0.9));
             border: 1px solid rgba(148, 163, 184, 0.32);
             box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            min-width: 0;
         }
 
-        .header-info-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
+        @media (max-width: 1023px) {
+            .header-logo { width: 52px; height: 52px; border-radius: 11px; }
         }
 
-        .header-logo {
-            width: 58px;
-            height: 58px;
-            object-fit: cover;
-            border-radius: 12px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-        }
-
-        /* Hide logo on very small screens to save space */
         @media (max-width: 479px) {
-            .header-logo { width: 40px; height: 40px; border-radius: 8px; }
+            .header-logo { width: 42px; height: 42px; border-radius: 9px; padding: 2px; }
         }
 
         .flag-cluster {
@@ -1207,14 +1217,14 @@
 <body class="bg-gray-50">
     <header class="bg-white/90 backdrop-blur-md shadow-md border-b border-slate-200/70">
         <div class="header-outer">
-            <div class="header-info-cluster">
+            <div class="header-left">
                 <img
                     src="logoweb.png"
                     alt="HL Hoang Long logo"
                     class="header-logo"
                     onerror="this.style.display='none'"
                 />
-                <div class="header-info-text">
+                <div class="header-info-cluster">
                     <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
                     <p id="header-tagline" class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
                     <div id="typewriter-text" class="typewriter text-sm text-gray-700">Printing - Advertising - Import &amp; Export</div>
