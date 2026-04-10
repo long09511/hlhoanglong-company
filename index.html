@@ -1619,6 +1619,7 @@
                 currentPageLanguage = btn.dataset.lang;
                 translatePage(currentPageLanguage);
                 updateThemeButtonIcon();
+                initializeCharts(); // Update charts with new language
             }));
 
             if (themeModeButton) themeModeButton.addEventListener('click', toggleThemeMode);
@@ -1785,129 +1786,141 @@ PHONG CÁCH TRẢ LỜI:
             }
 
             // ── Charts Initialization ─────────────────────────────────
-            // Bar Chart: Orders by Year (2015-2026)
-            const ordersCtx = document.getElementById('ordersBarChart');
-            if (ordersCtx) {
-                new Chart(ordersCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
-                        datasets: [{
-                            label: currentPageLanguage === 'vi' ? 'Số đơn hàng' : currentPageLanguage === 'en' ? 'Number of Orders' : '订单数量',
-                            data: [450, 680, 920, 1150, 1420, 850, 1380, 1680, 1920, 2250, 2580, 2850],
-                            backgroundColor: 'rgba(42, 90, 138, 0.8)',
-                            borderColor: 'rgba(42, 90, 138, 1)',
-                            borderWidth: 2,
-                            borderRadius: 8
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: {
-                            duration: 2000,
-                            easing: 'easeInOutQuart'
+            let ordersChart = null;
+            let countriesChart = null;
+
+            function initializeCharts() {
+                // Destroy existing charts if they exist
+                if (ordersChart) ordersChart.destroy();
+                if (countriesChart) countriesChart.destroy();
+
+                // Bar Chart: Orders by Year (2015-2026)
+                const ordersCtx = document.getElementById('ordersBarChart');
+                if (ordersCtx) {
+                    ordersChart = new Chart(ordersCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+                            datasets: [{
+                                label: currentPageLanguage === 'vi' ? 'Số đơn hàng' : currentPageLanguage === 'en' ? 'Number of Orders' : '订单数量',
+                                data: [450, 680, 920, 1150, 1420, 850, 1380, 1680, 1920, 2250, 2580, 2850],
+                                backgroundColor: 'rgba(42, 90, 138, 0.8)',
+                                borderColor: 'rgba(42, 90, 138, 1)',
+                                borderWidth: 2,
+                                borderRadius: 8
+                            }]
                         },
-                        plugins: {
-                            legend: {
-                                display: false
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: {
+                                duration: 2000,
+                                easing: 'easeInOutQuart'
                             },
-                            tooltip: {
-                                backgroundColor: 'rgba(42, 90, 138, 0.95)',
-                                padding: 12,
-                                titleFont: { size: 14, weight: 'bold' },
-                                bodyFont: { size: 13 },
-                                cornerRadius: 8
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    color: 'rgba(0, 0, 0, 0.05)'
-                                },
-                                ticks: {
-                                    font: { size: 12 },
-                                    color: '#64748b'
-                                }
-                            },
-                            x: {
-                                grid: {
+                            plugins: {
+                                legend: {
                                     display: false
                                 },
-                                ticks: {
-                                    font: { size: 12 },
-                                    color: '#64748b'
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Pie Chart: Orders by Country
-            const countriesCtx = document.getElementById('countriesPieChart');
-            if (countriesCtx) {
-                new Chart(countriesCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: [
-                            currentPageLanguage === 'vi' ? 'Hoa Kỳ' : currentPageLanguage === 'en' ? 'United States' : '美国',
-                            currentPageLanguage === 'vi' ? 'Việt Nam' : currentPageLanguage === 'en' ? 'Vietnam' : '越南',
-                            currentPageLanguage === 'vi' ? 'Trung Quốc' : currentPageLanguage === 'en' ? 'China' : '中国'
-                        ],
-                        datasets: [{
-                            data: [45, 35, 20],
-                            backgroundColor: [
-                                'rgba(42, 90, 138, 0.9)',
-                                'rgba(125, 183, 225, 0.9)',
-                                'rgba(147, 197, 253, 0.9)'
-                            ],
-                            borderColor: [
-                                'rgba(42, 90, 138, 1)',
-                                'rgba(125, 183, 225, 1)',
-                                'rgba(147, 197, 253, 1)'
-                            ],
-                            borderWidth: 2,
-                            hoverOffset: 15
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: {
-                            animateRotate: true,
-                            animateScale: true,
-                            duration: 2000,
-                            easing: 'easeInOutQuart'
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: { size: 13, weight: '500' },
-                                    color: '#475569',
-                                    padding: 15,
-                                    usePointStyle: true,
-                                    pointStyle: 'circle'
+                                tooltip: {
+                                    backgroundColor: 'rgba(42, 90, 138, 0.95)',
+                                    padding: 12,
+                                    titleFont: { size: 14, weight: 'bold' },
+                                    bodyFont: { size: 13 },
+                                    cornerRadius: 8
                                 }
                             },
-                            tooltip: {
-                                backgroundColor: 'rgba(42, 90, 138, 0.95)',
-                                padding: 12,
-                                titleFont: { size: 14, weight: 'bold' },
-                                bodyFont: { size: 13 },
-                                cornerRadius: 8,
-                                callbacks: {
-                                    label: function(context) {
-                                        return context.label + ': ' + context.parsed + '%';
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: 'rgba(0, 0, 0, 0.05)'
+                                    },
+                                    ticks: {
+                                        font: { size: 12 },
+                                        color: '#64748b'
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        font: { size: 12 },
+                                        color: '#64748b'
                                     }
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
+
+                // Pie Chart: Orders by Country
+                const countriesCtx = document.getElementById('countriesPieChart');
+                if (countriesCtx) {
+                    countriesChart = new Chart(countriesCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                currentPageLanguage === 'vi' ? 'Hoa Kỳ' : currentPageLanguage === 'en' ? 'United States' : '美国',
+                                currentPageLanguage === 'vi' ? 'Việt Nam' : currentPageLanguage === 'en' ? 'Vietnam' : '越南',
+                                currentPageLanguage === 'vi' ? 'Trung Quốc' : currentPageLanguage === 'en' ? 'China' : '中国'
+                            ],
+                            datasets: [{
+                                data: [45, 35, 20],
+                                backgroundColor: [
+                                    'rgba(42, 90, 138, 0.9)',
+                                    'rgba(125, 183, 225, 0.9)',
+                                    'rgba(147, 197, 253, 0.9)'
+                                ],
+                                borderColor: [
+                                    'rgba(42, 90, 138, 1)',
+                                    'rgba(125, 183, 225, 1)',
+                                    'rgba(147, 197, 253, 1)'
+                                ],
+                                borderWidth: 2,
+                                hoverOffset: 15
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            animation: {
+                                animateRotate: true,
+                                animateScale: true,
+                                duration: 2000,
+                                easing: 'easeInOutQuart'
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        font: { size: 13, weight: '500' },
+                                        color: '#475569',
+                                        padding: 15,
+                                        usePointStyle: true,
+                                        pointStyle: 'circle'
+                                    }
+                                },
+                                tooltip: {
+                                    backgroundColor: 'rgba(42, 90, 138, 0.95)',
+                                    padding: 12,
+                                    titleFont: { size: 14, weight: 'bold' },
+                                    bodyFont: { size: 13 },
+                                    cornerRadius: 8,
+                                    callbacks: {
+                                        label: function(context) {
+                                            return context.label + ': ' + context.parsed + '%';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
             }
+
+            // Initialize charts on page load
+            initializeCharts();
         });
     </script>
 </body>
