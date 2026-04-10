@@ -147,13 +147,34 @@
 
         .header-info-cluster {
             display: inline-flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            padding: 0.85rem 1.1rem;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1.1rem;
             border-radius: 0.8rem;
             background: linear-gradient(145deg, rgba(219, 234, 254, 0.72), rgba(239, 246, 255, 0.9));
             border: 1px solid rgba(148, 163, 184, 0.32);
             box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .header-info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .header-logo {
+            width: 58px;
+            height: 58px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Hide logo on very small screens to save space */
+        @media (max-width: 479px) {
+            .header-logo { width: 40px; height: 40px; border-radius: 8px; }
         }
 
         .flag-cluster {
@@ -1187,9 +1208,17 @@
     <header class="bg-white/90 backdrop-blur-md shadow-md border-b border-slate-200/70">
         <div class="header-outer">
             <div class="header-info-cluster">
-                <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
-                <p id="header-tagline" class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
-                <div id="typewriter-text" class="typewriter text-sm text-gray-700 mt-1">Printing - Advertising - Import &amp; Export</div>
+                <img
+                    src="logoweb.png"
+                    alt="HL Hoang Long logo"
+                    class="header-logo"
+                    onerror="this.style.display='none'"
+                />
+                <div class="header-info-text">
+                    <h1 class="text-lg font-bold text-blue-900">HL HOÀNG LONG</h1>
+                    <p id="header-tagline" class="text-sm text-gray-600">HL Hoang Long Service Trading Company Limited</p>
+                    <div id="typewriter-text" class="typewriter text-sm text-gray-700">Printing - Advertising - Import &amp; Export</div>
+                </div>
             </div>
             <div class="flag-cluster">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" class="small-flag flag-vn">
