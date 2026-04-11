@@ -893,6 +893,157 @@
             50% { transform: translateY(-5px); opacity: 1; }
         }
 
+        /* ── Language Picker Popup ───────────────────────────────── */
+        #lang-picker-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9800;
+            background: rgba(4, 12, 40, 0.82);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popupFadeIn 0.5s ease forwards;
+        }
+
+        #lang-picker-overlay.closing {
+            animation: popupFadeOut 0.35s ease forwards;
+        }
+
+        #lang-picker-box {
+            position: relative;
+            width: min(440px, calc(100vw - 2rem));
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem 2rem;
+            box-shadow: 0 48px 96px rgba(4, 12, 40, 0.45);
+            text-align: center;
+            transform: scale(0.88) translateY(24px);
+            animation: popupSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.05s forwards;
+        }
+
+        #lang-picker-overlay.closing #lang-picker-box {
+            animation: popupSlideOut 0.35s ease forwards;
+        }
+
+        body.dark-mode #lang-picker-box {
+            background: #06153f;
+            border: 1px solid rgba(99,143,220,0.3);
+        }
+
+        .lang-picker-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            border-radius: 16px;
+            margin: 0 auto 1.25rem;
+            display: block;
+            box-shadow: 0 8px 24px rgba(15,23,42,0.14);
+            background: #f1f5f9;
+            padding: 4px;
+        }
+
+        .lang-picker-title {
+            font-family: var(--font-calli);
+            font-style: italic;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.35rem;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .lang-picker-title { color: #93c5fd; }
+
+        .lang-picker-sub {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        body.dark-mode .lang-picker-sub { color: #94a3b8; }
+
+        .lang-picker-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .lang-picker-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border-radius: 1rem;
+            border: 2px solid rgba(148,163,184,0.25);
+            background: #f8faff;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            text-align: left;
+        }
+
+        body.dark-mode .lang-picker-btn {
+            background: rgba(10,30,80,0.6);
+            border-color: rgba(99,143,220,0.2);
+        }
+
+        .lang-picker-btn:hover {
+            border-color: #2a5a8a;
+            background: #eff6ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42,90,138,0.15);
+        }
+
+        body.dark-mode .lang-picker-btn:hover {
+            background: rgba(10,30,80,0.9);
+            border-color: #7db7e1;
+        }
+
+        .lang-picker-flag {
+            width: 36px;
+            height: 24px;
+            border-radius: 5px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+
+        .lang-picker-btn-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .lang-picker-btn-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            line-height: 1;
+        }
+
+        body.dark-mode .lang-picker-btn-name { color: #93c5fd; }
+
+        .lang-picker-btn-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        body.dark-mode .lang-picker-btn-label { color: #7db7e1; }
+
+        .lang-picker-chevron {
+            margin-left: auto;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .lang-picker-btn:hover .lang-picker-chevron {
+            transform: translateX(3px);
+            color: #2a5a8a;
+        }
+
         /* ── Gallery ────────────────────────────────────────────── */
         .gallery-grid {
             display: grid;
@@ -1748,6 +1899,41 @@
                 <input id="chat-input" type="text" placeholder="Gõ câu hỏi của bạn..." class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:border-blue-500">
                 <button id="send-btn" class="bg-blue-900 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-300">
                     <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Picker Popup (shown on first visit only) -->
+    <div id="lang-picker-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Chọn ngôn ngữ">
+        <div id="lang-picker-box">
+            <img src="logoweb.png" alt="HL Hoang Long" class="lang-picker-logo" onerror="this.style.display='none'" />
+            <p class="lang-picker-title">HL Hoàng Long</p>
+            <p class="lang-picker-sub">Vui lòng chọn ngôn ngữ / Please select language / 请选择语言</p>
+            <div class="lang-picker-options">
+                <button class="lang-picker-btn" data-pick="vi">
+                    <img class="lang-picker-flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/250px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png" alt="Cờ Việt Nam" />
+                    <span class="lang-picker-btn-text">
+                        <span class="lang-picker-btn-name">Tiếng Việt</span>
+                        <span class="lang-picker-btn-label">Vietnamese</span>
+                    </span>
+                    <i class="fas fa-chevron-right lang-picker-chevron"></i>
+                </button>
+                <button class="lang-picker-btn" data-pick="en">
+                    <img class="lang-picker-flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/250px-Flag_of_the_United_States.svg.png" alt="Cờ Mỹ" />
+                    <span class="lang-picker-btn-text">
+                        <span class="lang-picker-btn-name">English</span>
+                        <span class="lang-picker-btn-label">Tiếng Anh</span>
+                    </span>
+                    <i class="fas fa-chevron-right lang-picker-chevron"></i>
+                </button>
+                <button class="lang-picker-btn" data-pick="zh">
+                    <img class="lang-picker-flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/250px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Cờ Trung Quốc" />
+                    <span class="lang-picker-btn-text">
+                        <span class="lang-picker-btn-name">中文</span>
+                        <span class="lang-picker-btn-label">Chinese</span>
+                    </span>
+                    <i class="fas fa-chevron-right lang-picker-chevron"></i>
                 </button>
             </div>
         </div>
@@ -2802,8 +2988,44 @@ PHONG CÁCH TRẢ LỜI:
                 if (e.target === this) closePopup();
             });
 
-            // Show popup after 1.2 s (after page loads)
-            setTimeout(showHolidayPopup, 1200);
+            // ── Language Picker (first visit) ─────────────────────────
+            const langPickerOverlay = document.getElementById('lang-picker-overlay');
+            const hasChosenLang = localStorage.getItem('hlhoanglongLang');
+
+            function closeLangPicker(chosenLang) {
+                // Apply chosen language
+                currentPageLanguage = chosenLang;
+                translatePage(currentPageLanguage);
+                updateThemeButtonIcon();
+                initializeCharts();
+
+                // Animate out
+                langPickerOverlay.classList.add('closing');
+                setTimeout(function () {
+                    langPickerOverlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    // Show holiday popup after lang picker closes
+                    setTimeout(showHolidayPopup, 800);
+                }, 370);
+            }
+
+            // Bind picker buttons
+            document.querySelectorAll('.lang-picker-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    closeLangPicker(btn.dataset.pick);
+                });
+            });
+
+            // Show picker on first visit, otherwise go straight to holiday popup
+            if (!hasChosenLang) {
+                setTimeout(function () {
+                    langPickerOverlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }, 400);
+            } else {
+                // Already has language preference — skip picker
+                setTimeout(showHolidayPopup, 1200);
+            }
         });
     </script>
 </body>
